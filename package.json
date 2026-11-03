@@ -1,0 +1,22 @@
+{
+  "name": "dk-consultancy",
+  "version": "1.0.0",
+  "description": "DK Consultancy - Smart Finance Guidance & Loan Advisory Web Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "dk-consultancy",
+    "loans",
+    "finance",
+    "rajkot",
+    "business-loan",
+    "home-loan",
+    "cgtmse"
+  ],
+  "author": "DK Consultancy (Dhaval Khimani)",
+  "license": "ISC"
+}
