@@ -10,7 +10,7 @@ const zlib = require('zlib');
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
-const ROOT_DIR = __dirname;
+const ROOT_DIR = path.join(__dirname, '..');
 const DATA_FILE = path.join(ROOT_DIR, 'data', 'enquiries.json');
 
 // MIME types lookup

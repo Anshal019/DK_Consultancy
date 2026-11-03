@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "DK Consultancy - Smart Finance Guidance & Loan Advisory Web Application",
   "scripts": {
-    "start": "node local-server.js",
-    "dev": "node local-server.js"
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
   },
   "keywords": [
     "dk-consultancy",
