@@ -568,29 +568,25 @@ const documentData = {
         name: 'Applicant KYC',
         icon: '🪪',
         items: [
-          { name: 'PAN Card & Aadhaar Card', tag: 'Mandatory', icon: '🪪', desc: 'Government photo identity and address verification for primary borrower & co-borrower' },
-          { name: 'Valid Driving License', tag: 'Mandatory', icon: '🪪', desc: 'Valid permanent driving license of applicant or nominated primary driver' },
-          { name: 'Passport Photographs', tag: 'Essential', icon: '📷', desc: '2 recent passport-sized color photos of all signatories' },
-          { name: 'Residence Proof', tag: 'Essential', icon: '🏠', desc: 'Latest electricity bill or registered rent agreement in applicant name' }
+          { name: 'PAN Card & Aadhaar Card', desc: 'Mandatory identification documents for all applicants' },
+          { name: 'Driving License', desc: 'Valid driving license of applicant or co-applicant' },
+          { name: 'Passport Photos', desc: '2 recent passport-sized photographs' }
         ]
       },
       {
         name: 'Income & Banking',
         icon: '💵',
         items: [
-          { name: 'Salaried: Payslips & Form 16', tag: 'Income', icon: '💼', desc: 'Last 3 to 6 months payslips, Form 16 (last 2 years), & employer ID card' },
-          { name: 'Self-Employed: 2 Years ITR', tag: 'Financial', icon: '📊', desc: 'Last 2 years Income Tax Returns with computation, Balance Sheet & P&L' },
-          { name: '6 Months Bank Statement', tag: 'Banking', icon: '🏦', desc: 'Primary operative bank account showing salary credits or regular turnover' },
-          { name: 'Commercial Fleet RC Copies', tag: 'Commercial', icon: '🚛', desc: 'Existing vehicle RC books & trip contracts (for commercial fleet operators)' }
+          { name: 'Salaried Income Proof', desc: 'Last 3-6 months salary slips and 6 months salary bank statement' },
+          { name: 'Self-Employed / Fleets', desc: 'Last 2 years ITR with computation, 6 months bank statement & fleet RC copies' }
         ]
       },
       {
         name: 'Vehicle Quotation / Documentation',
         icon: '🚙',
         items: [
-          { name: 'New Vehicle: Proforma Invoice', tag: 'Vehicle', icon: '🚙', desc: 'Official dealer on-road price quotation with chassis booking details' },
-          { name: 'Used Vehicle: RC Book Copy', tag: 'Vehicle', icon: '📜', desc: 'Clear vehicle Registration Certificate, valid Insurance policy & Fitness certificate' },
-          { name: 'Advance Margin Token Receipt', tag: 'Payment', icon: '🧾', desc: 'Payment receipt / voucher for token down-payment made to the auto dealer' }
+          { name: 'New Vehicle: Proforma Invoice', desc: 'Official dealer proforma invoice with chassis booking details' },
+          { name: 'Used Vehicle: RC Book Copy', desc: 'Valid Registration Certificate, Insurance policy, and Fitness certificate' }
         ]
       }
     ]
@@ -722,23 +718,22 @@ function renderFintechDocHub(key) {
       ${data.groups.map(group => `
         <div class="fintech-card">
           <div class="fintech-card-head">
-            <div class="fintech-card-icon-wrap">${group.icon || '📄'}</div>
-            <div>
-              <h4 class="fintech-card-title">${escapeHTML(group.name)}</h4>
-              <span class="fintech-card-subtitle">${group.items.length} Required Documents</span>
-            </div>
+            <span class="fintech-card-icon">${group.icon || '📄'}</span>
+            <h4 class="fintech-card-title">${escapeHTML(group.name)}</h4>
           </div>
-          <ul class="fintech-checklist">
+          <div class="fintech-checklist">
             ${group.items.map(item => `
-              <li class="fintech-item">
-                <span class="fintech-check-badge">✓</span>
+              <div class="fintech-item">
+                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
                 <div class="fintech-item-body">
-                  <span class="fintech-item-title">${escapeHTML(item.name)}</span>
-                  <span class="fintech-item-desc">${escapeHTML(item.desc)}</span>
+                  <div class="fintech-item-title">${escapeHTML(item.name)}</div>
+                  <div class="fintech-item-desc">${escapeHTML(item.desc)}</div>
                 </div>
-              </li>
+              </div>
             `).join('')}
-          </ul>
+          </div>
         </div>
       `).join('')}
     </div>
