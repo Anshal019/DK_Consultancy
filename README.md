@@ -4,7 +4,27 @@ A modern, high-performance, production-ready web application for **DK Consultanc
 
 ---
 
-## 🚀 Quick Start (Run Locally)
+## 🚀 Deployment on Vercel
+
+This repository is pre-configured for **zero-configuration 1-click deployment on Vercel**:
+
+### Option 1: Via Vercel Dashboard (Recommended)
+1. Go to [vercel.com](https://vercel.com) and log in with your GitHub account.
+2. Click **"Add New..."** → **"Project"**.
+3. Import the repository: `Anshal019/DK_Consultancy`.
+4. Keep the default settings (**Framework Preset: Other**, **Root Directory: `./`**).
+5. Click **"Deploy"**.
+6. Your site will be live on a fast, global CDN with SSL enabled within seconds!
+
+### Option 2: Via Vercel CLI
+```bash
+npm i -g vercel
+vercel
+```
+
+---
+
+## 💻 Run Locally
 
 The application comes with an integrated, zero-dependency Node.js production server.
 
@@ -25,6 +45,10 @@ Then open your browser at:
 
 ```text
 DK_Consultancy_Updated/
+├── api/                     # Vercel Serverless Functions
+│   ├── health.js            # GET /api/health
+│   ├── enquiry.js           # POST /api/enquiry
+│   └── enquiries.js         # GET /api/enquiries
 ├── assets/
 │   ├── logo.png             # Official brand logo (640x640)
 │   └── favicon.png          # Browser favicon and web app icon
@@ -33,9 +57,10 @@ DK_Consultancy_Updated/
 ├── js/
 │   └── app.js               # Application logic (EMI calculator, chatbot, loan finder, leads)
 ├── data/
-│   └── enquiries.json       # Persistent server lead storage
+│   └── enquiries.json       # Persistent local server lead storage
 ├── index.html               # Semantic HTML5 with SEO & Schema.org JSON-LD
 ├── server.js                # Zero-dependency Node.js HTTP & REST API server
+├── vercel.json              # Vercel production routing & security headers
 ├── package.json             # NPM project configuration and scripts
 ├── .gitignore               # Standard git ignore definitions
 └── README.md                # Documentation
@@ -95,25 +120,6 @@ DK_Consultancy_Updated/
   - Dhaval Khimani (Founder/Consultant)
   - Ramapir Chowkdi / 150 Feet Ring Road, Rajkot geo-coordinates
   - Business hours, phone numbers, and service areas.
-
----
-
-## 🌐 Deployment Options
-
-### A. Node.js Production Hosting (VPS, DigitalOcean, Render, Railway, AWS EC2)
-```bash
-git clone <repo-url>
-cd DK_Consultancy_Updated
-npm start
-# or run with PM2 for background daemon management:
-# pm2 start server.js --name "dk-consultancy"
-```
-
-### B. Static Hosting (Vercel, Netlify, Cloudflare Pages, GitHub Pages, cPanel)
-The project is built with progressive enhancement. If deployed to any static host without Node.js:
-- `index.html` functions 100% autonomously.
-- Enquiries are automatically saved in browser `localStorage`.
-- Direct WhatsApp enquiry dispatching and calling work seamlessly.
 
 ---
 
