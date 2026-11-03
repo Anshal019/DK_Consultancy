@@ -30,71 +30,55 @@ const loanServices = [
     icon: '🏢',
     title: 'Business Loan',
     desc: 'Unsecured working capital, business expansion, raw material procurement, or cash-flow boost with fast approvals and flexible tenures.',
-    tags: ['Working Capital', 'Turnover Based', 'Fast Disbursal'],
-    indicativeRate: 'From 11.5% p.a.'
+    tags: ['Working Capital', 'Turnover Based', 'Fast Disbursal']
   },
   {
     icon: '🏛️',
     title: 'CGTMSE MSME Loan',
     desc: 'Collateral-free and third-party-guarantee-free credit facility up to ₹5 Crore for eligible micro and small enterprises under government scheme.',
-    tags: ['Zero Collateral', 'Govt Scheme', 'Up to ₹5 Cr'],
-    indicativeRate: 'Lender / Scheme Terms'
+    tags: ['Zero Collateral', 'Govt Scheme', 'Up to ₹5 Cr']
   },
   {
     icon: '🏠',
     title: 'Home Loan',
     desc: 'Tailored finance for purchasing ready/under-construction homes, plot purchase with construction, or balance transfer with top-up facility.',
-    tags: ['Lowest Interest', 'Up to 30 Yrs', 'Tax Benefits'],
-    indicativeRate: 'From 8.40% p.a.'
+    tags: ['Lowest Interest', 'Up to 30 Yrs', 'Tax Benefits']
   },
   {
     icon: '🏘️',
     title: 'Mortgage / Loan Against Property',
     desc: 'Leverage the market value of your residential, commercial, or industrial property for major business needs with comfortable repayment tenures.',
-    tags: ['High Ticket Size', 'Lower EMI', 'Flexible Usage'],
-    indicativeRate: 'From 9.25% p.a.'
+    tags: ['High Ticket Size', 'Lower EMI', 'Flexible Usage']
   },
   {
     icon: '💼',
     title: 'Personal Loan',
     desc: 'Quick collateral-free loans for salaried employees and self-employed professionals to meet immediate medical, family, or travel expenses.',
-    tags: ['No Security', 'Minimal Paperwork', '1 to 5 Yrs'],
-    indicativeRate: 'From 10.75% p.a.'
+    tags: ['No Security', 'Minimal Paperwork', '1 to 5 Yrs']
   },
   {
     icon: '🩺',
     title: 'Doctor & Professional Loan',
     desc: 'Exclusive specialized credit lines for practicing doctors, dentists, chartered accountants, and architects for clinics, labs, and setups.',
-    tags: ['Customized Limits', 'Hassle-Free', 'Practice Expansion'],
-    indicativeRate: 'Competitive Rates'
+    tags: ['Customized Limits', 'Hassle-Free', 'Practice Expansion']
   },
   {
     icon: '🚗',
     title: 'Car & Commercial Vehicle Loan',
     desc: 'Competitive financing options for new or pre-owned private cars, commercial fleets, trucks, and transport vehicles with flexible down payment.',
-    tags: ['Up to 100% On-road', 'New & Used', 'Instant Sanction'],
-    indicativeRate: 'From 8.75% p.a.'
+    tags: ['Up to 100% On-road', 'New & Used', 'Instant Sanction']
   },
   {
     icon: '⚙️',
     title: 'Machinery & Equipment Loan',
     desc: 'Upgrade your manufacturing setup, factory machines, CNC, medical equipment, or printing units with term loans against equipment proforma.',
-    tags: ['Capital Expenditure', 'Tax Depreciation', 'Supplier Linked'],
-    indicativeRate: 'Tailored Tenures'
+    tags: ['Capital Expenditure', 'Tax Depreciation', 'Supplier Linked']
   },
   {
     icon: '🪙',
     title: 'Gold Loan',
     desc: 'Instant liquidity against gold jewellery with maximum loan-to-value (LTV), transparent valuation, and flexible interest-servicing options.',
-    tags: ['Same Day Cash', 'Minimal KYC', 'Safe Storage'],
-    indicativeRate: 'From 9.0% p.a.'
-  },
-  {
-    icon: '🛡️',
-    title: 'Health & General Insurance',
-    desc: 'Comprehensive medical cover, family floater, critical illness, and commercial business assets insurance from top IRDAI-regulated insurers.',
-    tags: ['Cashless Hospitalization', 'Zero Waiting Options', 'Tax Saver'],
-    indicativeRate: 'Custom Premiums'
+    tags: ['Same Day Cash', 'Minimal KYC', 'Safe Storage']
   }
 ];
 
@@ -103,18 +87,12 @@ function renderLoanCards() {
   if (!container) return;
 
   container.innerHTML = loanServices.map(loan => `
-    <article class="card">
+    <article class="card" onclick="selectLoanService('${escapeHTML(loan.title)}')">
       <div class="card-icon">${loan.icon}</div>
       <h3>${loan.title}</h3>
       <p>${loan.desc}</p>
       <div class="card-tags">
         ${loan.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
-      <div class="card-action">
-        <span style="font-size:12px; font-weight:700; color:var(--maroon);">${loan.indicativeRate}</span>
-        <a class="textlink" href="#contact" onclick="selectLoanService('${escapeHTML(loan.title)}')">
-          Enquire Now →
-        </a>
       </div>
     </article>
   `).join('');
@@ -340,78 +318,121 @@ function findLoan() {
    4. Fintech-Grade Document Hub & Category Guide (Visual 3-Stage Architecture)
    ========================================================================== */
 const documentData = {
+  salaried: {
+    title: 'Salaried Applicant Document List',
+    icon: '👔',
+    subtitle: 'Corporate & Govt Staff',
+    tagline: 'Standard documentation portfolio for corporate, MNC, PSU, and government employees.',
+    tip: 'All document Xerox copies must be signed (self-attested) on every single page. Keep original documents ready for one-time physical bank verification.',
+    groups: [
+      {
+        name: 'Applicant KYC & Residence',
+        icon: '🪪',
+        items: [
+          { name: '1 Passport Size Photo', desc: 'Recent passport size color photograph of the applicant' },
+          { name: 'PAN Card Copy', desc: 'Mandatory for applicant identity verification and CIBIL score check' },
+          { name: 'Aadhaar Card Copy', desc: 'Mandatory UIDAI address and digital KYC verification' },
+          { name: 'Resident Light Bill Xerox Copy', desc: 'Latest home electricity bill Xerox copy as residential address proof' },
+          { name: 'Company ID Card Photo Copy', desc: 'Valid corporate employee identity card Xerox copy' }
+        ]
+      },
+      {
+        name: 'Salary & Banking Proofs',
+        icon: '💵',
+        items: [
+          { name: '6 Months Salary Slips', desc: 'Latest 6 months payslips showing gross salary, deductions & net pay' },
+          { name: '1 Year Bank Statement', desc: 'Complete 12 months updated bank statement where salary is credited' },
+          { name: 'Salary Bank Account Proof', desc: 'Passbook front page or cancelled cheque of operative salary account' },
+          { name: 'Joining / Appointment Letter', desc: 'Official company joining letter proving job stability & total tenure' }
+        ]
+      },
+      {
+        name: 'Submission & Underwriter Rules',
+        icon: '📋',
+        items: [
+          { name: 'Signature on All Pages (Mandatory)', desc: 'All document Xerox copies must have applicant signature on every single page' },
+          { name: 'Form 16 / Tax Assessment', desc: 'Last 2 years Form 16 (Part A & B) or recent income tax assessment returns' },
+          { name: 'Clean Banking Track', desc: 'Zero ECS/NACH cheque returns or bounce charges in operative accounts' },
+          { name: 'Originals for Verification', desc: 'Keep original PAN, Aadhaar & payslips ready for one-time physical bank verification' }
+        ]
+      }
+    ]
+  },
   business: {
     title: 'Business Loan & Working Capital',
     icon: '🏢',
     subtitle: 'MSME & Working Capital',
-    tagline: 'Standard document portfolio for unsecured business loans, MSME credit, CC/OD limits, and capex expansion.',
-    tip: 'Keep your 12 months GST-3B returns reconciled with your current account banking turnover for fastest bank clearance.',
+    tagline: 'Financing solutions for proprietor firms, partnership businesses, MSMEs, and private limited companies.',
+    tip: 'All document Xerox copies must be signed on every page. Ensure last 12 months GST returns match current account bank credits.',
     groups: [
       {
-        name: 'KYC & Promoter Proofs',
+        name: 'Promoter & Residence KYC',
         icon: '🪪',
         items: [
-          { name: 'PAN Card', tag: 'Mandatory', icon: '🪪', desc: 'Firm PAN and individual PAN for all directors, partners, and proprietor' },
-          { name: 'Aadhaar Card', tag: 'Mandatory', icon: '📄', desc: 'UIDAI Aadhaar of all promoters with active mobile link for e-verification' },
-          { name: 'Passport Photos', tag: 'Essential', icon: '📷', desc: 'Recent passport-sized color photographs of all active promoters' },
-          { name: 'Residence Proof', tag: 'Essential', icon: '🏠', desc: 'Latest electricity bill or registered rent agreement of all promoters' }
+          { name: '1 Passport Size Photo', desc: 'Recent passport size photo of applicant / partners / directors' },
+          { name: 'PAN Card Copy', desc: 'Individual PAN cards of proprietor/partners and Firm PAN card' },
+          { name: 'Aadhaar Card Copy', desc: 'UIDAI KYC proof of all active promoters with mobile link' },
+          { name: 'Resident Electric Bill or Tax Bill', desc: 'Latest residential light bill or Municipal Tax Bill as home ownership proof' }
         ]
       },
       {
-        name: 'Business Registration & Constitution',
-        icon: '📑',
+        name: 'Business Proofs & Ongoing Loans',
+        icon: '🏢',
         items: [
-          { name: 'GST Certificate & Returns', tag: 'Mandatory', icon: '📑', desc: 'Active GSTIN certificate and last 12 months filed GSTR-3B returns' },
-          { name: 'Udyam Aadhaar (MSME)', tag: 'Essential', icon: '📜', desc: 'MSME registration certificate for priority sector interest subventions' },
-          { name: 'Shop & Establishment', tag: 'Essential', icon: '🏛️', desc: 'Gumastadhara trade license or local municipal factory permit' },
-          { name: 'Entity Constitution', tag: 'Mandatory', icon: '⚖️', desc: 'Partnership deed / MOA & AOA with Certificate of Incorporation' }
+          { name: 'Business Proof (SSI / GST / Shop License)', desc: 'Udyam MSME certificate, active GST registration, and Shop & Establishment License' },
+          { name: 'Commercial Premises Light Bill', desc: 'Latest electricity bill Xerox copy of office, shop, or factory' },
+          { name: 'Current Loan Details (SOA or Welcome Letter)', desc: 'Statement of Account (SOA) or Welcome Letter with repayment schedule for ongoing loans' },
+          { name: 'Signatures on All Pages', desc: 'Xerox copy of all documents signed page by page' }
         ]
       },
       {
-        name: 'Financials & Banking Statements',
+        name: 'Financials & 1-Year Banking',
         icon: '📊',
         items: [
-          { name: 'Last 3 Years Audited Financials', tag: 'Financial', icon: '📊', desc: 'Balance Sheet, P&L, Audit Reports with CA 3CA/3CB forms' },
-          { name: 'Last 3 Years Income Tax Returns', tag: 'Financial', icon: '🧾', desc: 'Complete ITR acknowledgements with detailed computation of income' },
-          { name: '12 Months Bank Statements', tag: 'Banking', icon: '🏦', desc: 'Original PDF e-statements for all operative Current & Savings accounts' },
-          { name: 'Existing Loan Track Record', tag: 'Track', icon: '📈', desc: 'Sanction letters & 12M statement of accounts for active ongoing credit lines' }
+          { name: 'ITR Last 3 Years', desc: 'Last 3 years filed Income Tax Returns with detailed computation of income' },
+          { name: 'Audit Return 3 Years', desc: 'Last 3 years Audited Balance Sheet & Profit and Loss account with CA audit reports' },
+          { name: 'Banking Last 1 Year (Current & Savings)', desc: 'Last 12 months comprehensive statements of all Current and Savings accounts' },
+          { name: 'Turnover Track Record', desc: 'Reconciled GST-3B turnover matching banking credits' }
         ]
       }
     ]
   },
   home: {
-    title: 'Home Loan & Construction',
+    title: 'Home Loan & Housing Finance',
     icon: '🏠',
-    subtitle: 'Residential Finance',
-    tagline: 'Comprehensive document kit for new flat purchase, residential plot acquisition, bungalow construction, and home extension.',
-    tip: 'Property title clearance in Rajkot requires checking the 30-year index register and RMC/RUDA development zoning. We handle this verification.',
+    subtitle: 'Residential Property',
+    tagline: 'Financing solutions for new flat purchase, residential plot acquisition, bungalow construction, and balance transfer.',
+    tip: 'Co-applicant lady KYC borrower mandatory. All document Xerox copies must be signed on every single page.',
     groups: [
       {
-        name: 'Applicant KYC & Identity Proofs',
+        name: 'Applicant KYC & Lady Co-Applicant',
         icon: '🪪',
         items: [
-          { name: 'PAN Card', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory for primary applicant and all registered property co-owners' },
-          { name: 'Aadhaar Card', tag: 'Mandatory', icon: '📄', desc: 'Identity and address proof for all co-owners with active mobile link' },
-          { name: 'Passport Photos', tag: 'Essential', icon: '📷', desc: 'Recent colored passport photos of all applicants' }
+          { name: '2 Passport Size Photos', desc: 'Recent passport size photographs of applicant and co-applicants' },
+          { name: 'PAN Card Copy', desc: 'Mandatory identity card copy for primary applicant and all co-owners' },
+          { name: 'Aadhaar Card Copy', desc: 'UIDAI KYC proof for primary borrower and co-applicant' },
+          { name: 'Co-Applicant Lady KYC (Mandatory)', desc: 'Co-applicant lady KYC borrower is compulsory as per bank guidelines' },
+          { name: 'Resident Electric Bill or Tax Bill', desc: 'Latest residential light bill or Municipal Tax Bill as ownership proof' }
         ]
       },
       {
-        name: 'Income & Banking Credentials',
-        icon: '💵',
+        name: 'Property File & Legal Clearance',
+        icon: '🏠',
         items: [
-          { name: 'Salaried: Payslips & Form 16', tag: 'Income', icon: '💼', desc: 'Last 6 months salary slips, Form 16 (last 2 years), & salary bank statement' },
-          { name: 'Self-Employed: 3 Yrs ITR', tag: 'Financial', icon: '📊', desc: 'Last 3 years ITR with computation, Balance Sheet, & 12M bank statement' },
-          { name: '12 Months Bank Account', tag: 'Banking', icon: '🏦', desc: 'Comprehensive bank statement showing active balance & regular savings' }
+          { name: 'Property File Copy', desc: 'Complete legal property file copy for bank legal and technical valuation' },
+          { name: 'Registered Title Deed Chain', desc: 'Complete chain of registered sale deeds / allotment letters tracing ownership' },
+          { name: 'Sanctioned Municipal Blueprint', desc: 'Approved building layout plan and construction permission (RMC / RUDA)' },
+          { name: 'Property Tax & Light Bill', desc: 'Latest municipal property tax receipt and site electricity bill' }
         ]
       },
       {
-        name: 'Property & Title Documents',
-        icon: '🏗️',
+        name: 'Income, Banking & Business Proof',
+        icon: '📊',
         items: [
-          { name: 'Agreement to Sell / Allotment', tag: 'Legal', icon: '📜', desc: 'Registered agreement to sell or builder allotment letter with payment trail' },
-          { name: 'Approved Building Blueprint', tag: 'Legal', icon: '🏛️', desc: 'Sanctioned municipal blueprint and approved layout by RMC / RUDA Rajkot' },
-          { name: '30-Year Title Search & N.A.', tag: 'Legal', icon: '⚖️', desc: '30-year title clearance report, N.A. permission & non-encumbrance certificate' },
-          { name: 'Advance Margin Token Receipts', tag: 'Payment', icon: '🧾', desc: 'Proof of margin money / advance token payment paid to seller or builder' }
+          { name: 'ITR Last 3 Years', desc: 'Filed Income Tax Returns for last 3 years with complete computation of income' },
+          { name: 'Banking Last 1 Year (Current & Savings)', desc: '12 months updated statements of all operative Savings and Current accounts' },
+          { name: 'Business Proof & Light Bill', desc: 'SSI / MSME, GST, Shop License & last commercial light bill (if self-employed)' },
+          { name: 'Current Loan Details (SOA / Welcome Letter)', desc: 'Statement of Account (SOA) or Welcome Letter if any loan is ongoing' }
         ]
       }
     ]
@@ -420,139 +441,77 @@ const documentData = {
     title: 'Mortgage / Loan Against Property (LAP)',
     icon: '🏘️',
     subtitle: 'Property Collateral',
-    tagline: 'High-value capital unlocked against your residential, commercial, or industrial real estate.',
-    tip: 'Property co-owners must be included as co-applicants. Both self-occupied and leased commercial properties are eligible.',
+    tagline: 'Unlock high-value liquidity against your residential, commercial, or industrial real estate.',
+    tip: 'Co-applicant lady KYC borrower mandatory. All document Xerox copies must be signed on every single page.',
     groups: [
       {
-        name: 'Applicant & Co-Owner KYC',
+        name: 'Borrower KYC & Mandatory Lady Co-Applicant',
         icon: '🪪',
         items: [
-          { name: 'PAN & Aadhaar Cards', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory for applicant, co-applicant, and all property co-owners' },
-          { name: 'Passport Photographs', tag: 'Essential', icon: '📷', desc: '2 recent passport photos of all signatories' },
-          { name: 'Current Residence Proof', tag: 'Address', icon: '🏠', desc: 'Latest municipal property tax receipt or electricity bill in applicant name' }
+          { name: '2 Passport Size Photos', desc: 'Recent passport-sized color photos of applicant and co-applicants' },
+          { name: 'PAN Card Copy', desc: 'Individual PAN cards of primary applicant and all property co-owners' },
+          { name: 'Aadhaar Card Copy', desc: 'Aadhaar card copy of all property owners and co-applicants' },
+          { name: 'Co-Applicant Lady KYC (Mandatory)', desc: 'Co-applicant lady KYC borrower is compulsory for mortgage loans' },
+          { name: 'Resident Electric Bill or Tax Bill', desc: 'Latest electric bill or Municipal Tax Bill as home ownership proof' }
         ]
       },
       {
-        name: 'Property Title Chain Documents',
-        icon: '📂',
+        name: 'Mortgaged Property File & Title',
+        icon: '🏘️',
         items: [
-          { name: 'Original Registered Sale Deeds', tag: 'Legal', icon: '📜', desc: 'Complete unbroken chain of registered title deeds tracing ownership' },
-          { name: 'Sanctioned Municipal Layout Plan', tag: 'Legal', icon: '🏛️', desc: 'Approved building plan and BU (Building Use) permission from civic body' },
-          { name: 'Latest Tax & Utility Receipts', tag: 'Proof', icon: '🧾', desc: 'Recent municipal property tax receipt and electricity bill in owner name' }
+          { name: 'Property File Copy', desc: 'Complete legal property file copy of the asset being mortgaged' },
+          { name: 'Registered Sale Deed Chain', desc: 'Unbroken 30-year chain of registered title deeds and conveyance deeds' },
+          { name: 'Sanctioned Layout Blueprint', desc: 'Approved building blueprint and local municipal permission' },
+          { name: 'Property Tax & Light Bill', desc: 'Latest municipal tax receipt and site electric bill' }
         ]
       },
       {
-        name: 'Financials & Balance Transfer',
+        name: 'Financials & Banking Statements',
         icon: '📊',
         items: [
-          { name: 'Last 3 Years ITR & Computations', tag: 'Financial', icon: '📊', desc: 'Detailed tax returns, Balance Sheet & P&L (for self-employed / business)' },
-          { name: '12 Months Bank Statements', tag: 'Banking', icon: '🏦', desc: 'Comprehensive bank statements of all operative savings and current accounts' },
-          { name: 'Balance Transfer LOD Letter', tag: 'Transfer', icon: '🔄', desc: 'If refinancing: Foreclosure letter, sanction letter & List of Original Documents' }
-        ]
-      }
-    ]
-  },
-  salaried: {
-    title: 'Salaried Applicant Documents',
-    icon: '👔',
-    subtitle: 'Corporate & Govt Staff',
-    tagline: 'Fast-track documentation for corporate, MNC, PSU, and government employees.',
-    tip: 'Maintaining a CIBIL score above 720 and a clean bank statement without ECS/NACH bounces guarantees the lowest bank interest rates.',
-    groups: [
-      {
-        name: 'Identity & Address KYC',
-        icon: '🪪',
-        items: [
-          { name: 'PAN Card', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory for credit score checking and income tax reporting' },
-          { name: 'Aadhaar Card', tag: 'Mandatory', icon: '📄', desc: 'Address verification and digital e-sign capability' },
-          { name: 'Current Residence Proof', tag: 'Address', icon: '🏠', desc: 'Electricity bill, piped gas bill, or registered rent agreement' },
-          { name: 'Passport Photographs', tag: 'Essential', icon: '📷', desc: 'Recent colored passport photos' }
-        ]
-      },
-      {
-        name: 'Employment Credentials',
-        icon: '💼',
-        items: [
-          { name: 'Company ID Card', tag: 'Essential', icon: '🪪', desc: 'Copy of valid corporate employee identity badge' },
-          { name: 'Appointment / Confirmation Letter', tag: 'Employment', icon: '📜', desc: 'Proof of total employment continuity and probation clearance' },
-          { name: 'Official Corporate Email', tag: 'Verification', icon: '📧', desc: 'Work email address for digital employer confirmation' }
-        ]
-      },
-      {
-        name: 'Salary & Banking Proofs',
-        icon: '💵',
-        items: [
-          { name: 'Salary Slips (3 to 6 Months)', tag: 'Income', icon: '💵', desc: 'Stamped by HR or digitally signed payslips showing net and gross pay' },
-          { name: 'Form 16 (Part A & B)', tag: 'Tax', icon: '🧾', desc: 'Form 16 for last 2 financial years or ITR acknowledgements' },
-          { name: 'Salary Account Bank Statement', tag: 'Banking', icon: '🏦', desc: 'Last 6 to 12 months updated bank statement where monthly salary is credited' }
+          { name: 'ITR Last 3 Years', desc: 'Last 3 years filed Income Tax Returns with detailed computation' },
+          { name: 'Banking Last 1 Year (Current & Savings)', desc: 'Last 12 months comprehensive statements of Current and Savings accounts' },
+          { name: 'Business Proof & Light Bill', desc: 'SSI / MSME, GST, Shop License, and commercial premises light bill' },
+          { name: 'Current Loan Details (SOA or Welcome Letter)', desc: 'Statement of Account (SOA) or Welcome Letter for ongoing loans' }
         ]
       }
     ]
   },
   personal: {
-    title: 'Personal Loan (Unsecured)',
+    title: 'Personal Loan (Unsecured Cash)',
     icon: '💼',
-    subtitle: 'Instant Credit',
+    subtitle: 'Instant Liquidity',
     tagline: 'Quick multi-purpose cash advance with zero collateral or guarantor requirement.',
-    tip: 'No collateral or property pledge required. Disbursed directly to your bank account within 24 to 48 hours.',
+    tip: 'Sign and submit all document Xerox copies page by page. Disbursed directly to your bank account within 24 to 48 hours.',
     groups: [
       {
-        name: 'Identity & KYC Proofs',
+        name: 'Applicant KYC & Residence',
         icon: '🪪',
         items: [
-          { name: 'PAN Card', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory identity document for instant CIBIL credit score check' },
-          { name: 'Aadhaar Card / Voter ID / Passport', tag: 'Mandatory', icon: '📄', desc: 'Identity and residential address proof' },
-          { name: 'Passport Photographs', tag: 'Essential', icon: '📷', desc: '2 recent passport-sized color photos' }
+          { name: '1 Passport Size Photo', desc: 'Recent passport size color photograph of the applicant' },
+          { name: 'PAN Card Copy', desc: 'Mandatory identity proof for immediate CIBIL credit score check' },
+          { name: 'Aadhaar Card Copy', desc: 'UIDAI KYC proof with registered mobile phone link' },
+          { name: 'Resident Light Bill Last Xerox', desc: 'Latest Xerox copy of home electricity bill as address proof' }
         ]
       },
       {
-        name: 'Income & Employment Proofs',
-        icon: '📈',
+        name: 'Business & Ongoing Loan Proofs',
+        icon: '💼',
         items: [
-          { name: 'Payslips / Income Certificate', tag: 'Income', icon: '💵', desc: 'Last 3 months payslips (for salaried) OR 2 years ITR (for self-employed)' },
-          { name: 'Company ID or Business Proof', tag: 'Employment', icon: '💼', desc: 'Valid employer identity card or business registration certificate' }
+          { name: 'Shop Light Bill Xerox', desc: 'Latest electricity bill of shop/office premises (for self-employed)' },
+          { name: 'Xerox Copy of GST Number', desc: 'Xerox copy of active GST registration certificate' },
+          { name: 'Welcome Letter & Repayment Schedule', desc: 'Welcome letter and repayment schedule if any loan is ongoing' },
+          { name: 'Sign & Submit Page by Page', desc: 'Xerox copy of all documents signed and submitted page by page' }
         ]
       },
       {
-        name: 'Banking & Repayment Track',
-        icon: '🏦',
+        name: 'Financials & 1-Year Banking',
+        icon: '📊',
         items: [
-          { name: '6 Months Bank Account Statement', tag: 'Banking', icon: '🏦', desc: 'Primary account statement showing salary or regular income credits' },
-          { name: 'Active Loan Repayment Track', tag: 'Credit', icon: '📈', desc: 'Statement of account for any existing active EMIs or credit card limits' }
-        ]
-      }
-    ]
-  },
-  gold: {
-    title: 'Gold Loan (Instant Liquidity)',
-    icon: '🪙',
-    subtitle: 'Same-Day Cash',
-    tagline: 'Instant cash advance against 18k to 24k gold jewellery with minimal paperwork.',
-    tip: 'Instant sanction with same-day cash or bank disbursement at minimal processing fees. Safe vault storage guaranteed.',
-    groups: [
-      {
-        name: 'Essential KYC Documents',
-        icon: '🪪',
-        items: [
-          { name: 'Identity Proof (PAN Card)', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory for advances above ₹50,000' },
-          { name: 'Address Proof (Aadhaar / Voter ID)', tag: 'Mandatory', icon: '📄', desc: 'Aadhaar Card, Voter ID, Driving License, or Passport' },
-          { name: 'Passport Photos', tag: 'Essential', icon: '📷', desc: '2 recent passport-sized color photographs' }
-        ]
-      },
-      {
-        name: 'Gold Collateral & Verification',
-        icon: '🥇',
-        items: [
-          { name: 'Physical Gold Ornaments / Coins', tag: 'Collateral', icon: '🥇', desc: 'Gold jewellery or certified coins for on-the-spot electronic caratmeter appraisal' },
-          { name: 'Purchase Invoices (Optional)', tag: 'Optional', icon: '🧾', desc: 'Original gold jeweler invoice if available (helpful for high-value advances)' }
-        ]
-      },
-      {
-        name: 'Zero Financial Paperwork',
-        icon: '✅',
-        items: [
-          { name: 'No Income Proofs Required', tag: 'No Docs', icon: '✅', desc: 'Zero salary slips, zero ITR, and zero balance sheet requirements' },
-          { name: 'Flexible Repayment Terms', tag: 'Flexibility', icon: '🔄', desc: 'Bullet repayment, monthly interest EMI, or flexible overdraft credit line' }
+          { name: '1 Year Bank Statement (Savings & Current)', desc: 'Complete 12 months Savings and Current account Xerox copy' },
+          { name: '3 Years Regular Returns', desc: 'Last 3 years regular filed ITR with detailed income computation' },
+          { name: '3 Years Balance Sheet', desc: 'Complete balance sheet and profit & loss statements' },
+          { name: 'Clean Banking Record', desc: 'Zero ECS/NACH cheque returns or penalty charges in last 12 months' }
         ]
       }
     ]
@@ -562,7 +521,7 @@ const documentData = {
     icon: '🚗',
     subtitle: 'Auto & Transport',
     tagline: 'Financing solutions for passenger cars, transport fleets, and used vehicles.',
-    tip: 'Up to 90% to 100% on-road funding available for selected four-wheelers with flexible 1 to 7 year tenures.',
+    tip: 'Up to 90% to 100% on-road funding available for selected vehicles. All Xerox copies must be signed page by page.',
     groups: [
       {
         name: 'Applicant KYC',
@@ -570,7 +529,8 @@ const documentData = {
         items: [
           { name: 'PAN Card & Aadhaar Card', desc: 'Mandatory identification documents for all applicants' },
           { name: 'Driving License', desc: 'Valid driving license of applicant or co-applicant' },
-          { name: 'Passport Photos', desc: '2 recent passport-sized photographs' }
+          { name: 'Passport Photos', desc: '2 recent passport-sized photographs' },
+          { name: 'Residence Light Bill', desc: 'Latest home electricity bill Xerox copy as address proof' }
         ]
       },
       {
@@ -578,7 +538,9 @@ const documentData = {
         icon: '💵',
         items: [
           { name: 'Salaried Income Proof', desc: 'Last 3-6 months salary slips and 6 months salary bank statement' },
-          { name: 'Self-Employed / Fleets', desc: 'Last 2 years ITR with computation, 6 months bank statement & fleet RC copies' }
+          { name: 'Self-Employed / Fleets', desc: 'Last 2 years ITR with computation, 6 months bank statement & fleet RC copies' },
+          { name: '1 Year Bank Statement', desc: 'Bank statement showing regular income credits and healthy balance' },
+          { name: 'Existing Loan SOA', desc: 'Repayment track of active vehicle, personal, or business loans' }
         ]
       },
       {
@@ -586,7 +548,47 @@ const documentData = {
         icon: '🚙',
         items: [
           { name: 'New Vehicle: Proforma Invoice', desc: 'Official dealer proforma invoice with chassis booking details' },
-          { name: 'Used Vehicle: RC Book Copy', desc: 'Valid Registration Certificate, Insurance policy, and Fitness certificate' }
+          { name: 'Used Vehicle: RC Book Copy', desc: 'Valid Registration Certificate, Insurance policy, and Fitness certificate' },
+          { name: 'Transport Permit (Commercial)', desc: 'State or National permit copy for commercial transport vehicles' },
+          { name: 'Signatures on All Pages', desc: 'All document Xerox copies signed page by page' }
+        ]
+      }
+    ]
+  },
+  gold: {
+    title: 'Gold Loan (Instant Liquidity)',
+    icon: '🪙',
+    subtitle: 'Same-Day Cash',
+    tagline: 'Instant cash advance against 18k to 24k gold jewellery with minimal paperwork.',
+    tip: 'Instant disbursement within 30 minutes at highest loan-to-value (LTV). Zero ITR or income proof required.',
+    groups: [
+      {
+        name: 'Essential KYC Documents',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card Copy', desc: 'Mandatory identity card copy for verification and credit reporting' },
+          { name: 'Aadhaar Card / Voter ID', desc: 'UIDAI Aadhaar or Voter ID as residential address proof' },
+          { name: '2 Passport Size Photos', desc: 'Recent passport-sized color photographs' },
+          { name: 'Residence Light Bill', desc: 'Latest home electricity bill Xerox copy' }
+        ]
+      },
+      {
+        name: 'Gold Collateral & Appraisal',
+        icon: '🪙',
+        items: [
+          { name: 'Physical Gold Ornaments', desc: 'Gold jewellery (18 Karat to 24 Karat) for on-the-spot caratmeter appraisal' },
+          { name: 'Purchase Invoices (Optional)', desc: 'Original jeweler purchase invoice if available' },
+          { name: 'Electronic Purity Certificate', desc: 'Instant transparent digital appraisal and valuation report' }
+        ]
+      },
+      {
+        name: 'Zero Paperwork & Terms',
+        icon: '⚡',
+        items: [
+          { name: 'No Income Proofs Required', desc: 'Zero salary slips, zero ITR, and zero balance sheet requirements' },
+          { name: 'Flexible Repayment Options', desc: 'Bullet repayment, monthly interest EMI, or flexible credit line' },
+          { name: 'Insured Vault Storage', desc: '100% insured bank vault security for your pledged gold ornaments' },
+          { name: 'Self-Attested KYC Copies', desc: 'All Xerox document copies signed page by page' }
         ]
       }
     ]
@@ -596,33 +598,36 @@ const documentData = {
     icon: '⚙️',
     subtitle: 'Industrial Capex',
     tagline: 'Capex financing for CNC machines, packaging lines, engineering plants, and industrial tools.',
-    tip: 'Eligible for Gujarat State and Central Government MSME subsidies (CLCSS / Interest Subvention) to lower your borrowing cost.',
+    tip: 'Eligible for Gujarat State & Central Government MSME subsidies to lower interest rates.',
     groups: [
       {
         name: 'Entity & Promoter KYC',
         icon: '🪪',
         items: [
-          { name: 'Promoter PAN & Aadhaar', tag: 'Mandatory', icon: '🪪', desc: 'PAN and Aadhaar cards of all directors, partners, and key managers' },
-          { name: 'Business Registration Proofs', tag: 'Business', icon: '📑', desc: 'GST Certificate, Udyam MSME Registration, & Factory / Shop license' },
-          { name: 'Industrial Electricity Bill', tag: 'Address', icon: '🏭', desc: 'Latest manufacturing facility / industrial unit electricity bill' }
+          { name: 'Promoter PAN & Aadhaar', desc: 'PAN and Aadhaar cards of all directors, partners, and key managers' },
+          { name: 'Business Registration Proofs', desc: 'GST Certificate, Udyam MSME Registration, & Factory / Shop license' },
+          { name: 'Industrial Electricity Bill', desc: 'Latest manufacturing facility / industrial unit electricity bill' },
+          { name: 'Passport Photos', desc: '2 photos of all signing authorities' }
         ]
       },
       {
         name: 'Machinery Quotation & Specs',
-        icon: '📜',
+        icon: '⚙️',
         items: [
-          { name: 'Manufacturer Proforma Invoice', tag: 'Machine', icon: '⚙️', desc: 'Official commercial quotation from certified machinery manufacturer/dealer' },
-          { name: 'Technical Specs & Layout Note', tag: 'Technical', icon: '📐', desc: 'Machine specifications, power requirements, & expected production output' },
-          { name: 'Advance Margin Token Receipt', tag: 'Payment', icon: '🧾', desc: 'Proof of advance token paid to machine supplier (if already remitted)' }
+          { name: 'Manufacturer Proforma Invoice', desc: 'Official commercial quotation from certified machinery manufacturer/dealer' },
+          { name: 'Technical Specs & Layout Note', desc: 'Machine specifications, power requirements, & expected production output' },
+          { name: 'Advance Margin Token Receipt', desc: 'Proof of advance token paid to machine supplier (if already remitted)' },
+          { name: 'Existing Machine List', desc: 'List of existing factory plant & machinery' }
         ]
       },
       {
         name: 'Financials & Cash Flow',
         icon: '📊',
         items: [
-          { name: 'Last 3 Years Audited Financials', tag: 'Financial', icon: '📊', desc: 'Balance Sheets, P&L, Audit Reports, and CA 3CA/3CB forms' },
-          { name: 'Last 3 Years Income Tax Returns', tag: 'Tax', icon: '🧾', desc: 'Complete ITRs with detailed computation of income' },
-          { name: '12 Months Current Account Statement', tag: 'Banking', icon: '🏦', desc: 'Statements of all operative business bank accounts' }
+          { name: 'Last 3 Years Audited Financials', desc: 'Balance Sheets, P&L, Audit Reports, and CA 3CA/3CB forms' },
+          { name: 'Last 3 Years Income Tax Returns', desc: 'Complete ITRs with detailed computation of income' },
+          { name: '12 Months Current Account', desc: 'Statements of all operative business bank accounts' },
+          { name: 'Signature Page by Page', desc: 'All Xerox copies duly signed and stamped' }
         ]
       }
     ]
@@ -632,33 +637,36 @@ const documentData = {
     icon: '🩺',
     subtitle: 'Medical Practice',
     tagline: 'Customized credit lines for doctors, dentists, diagnostic centers, and healthcare practitioners.',
-    tip: 'Special concessional interest rates and pre-approved limits up to ₹50 Lakhs without any property collateral required.',
+    tip: 'Special concessional interest rates and pre-approved limits up to ₹50 Lakhs without property collateral.',
     groups: [
       {
         name: 'KYC & Professional Credentials',
         icon: '🪪',
         items: [
-          { name: 'PAN & Aadhaar Cards', tag: 'Mandatory', icon: '🪪', desc: 'Mandatory identity verification for primary applicant' },
-          { name: 'Medical Degree Certificate', tag: 'Credential', icon: '🎓', desc: 'MBBS / MD / MS / BDS / MDS / BHMS / BAMS qualifying degree certificate' },
-          { name: 'Medical Council Registration', tag: 'License', icon: '📜', desc: 'Valid registration certificate from State Medical Council or NMC / Dental Council' },
-          { name: 'Passport Photographs', tag: 'Essential', icon: '📷', desc: 'Recent colored passport photos' }
+          { name: 'PAN & Aadhaar Cards', desc: 'Mandatory identity verification for primary applicant' },
+          { name: 'Medical Degree Certificate', desc: 'MBBS / MD / MS / BDS / MDS / BHMS / BAMS qualifying degree certificate' },
+          { name: 'Medical Council Registration', desc: 'Valid registration certificate from State Medical Council or NMC' },
+          { name: 'Passport Photos', desc: 'Recent passport-sized color photos' }
         ]
       },
       {
         name: 'Clinic & Practice Records',
         icon: '🏥',
         items: [
-          { name: 'Clinic Ownership / Lease Agreement', tag: 'Clinic', icon: '🏥', desc: 'Property title deed or registered rent lease agreement for clinic premises' },
-          { name: 'Establishment Clearance', tag: 'License', icon: '🏛️', desc: 'Local municipal clinical establishment certificate / trade permit' }
+          { name: 'Clinic Ownership / Lease Agreement', desc: 'Property title deed or registered rent lease agreement for clinic premises' },
+          { name: 'Establishment Clearance', desc: 'Local municipal clinical establishment certificate / trade permit' },
+          { name: 'Clinic Electricity Bill', desc: 'Latest light bill Xerox copy of clinic / hospital premises' },
+          { name: 'Self-Attested Copies', desc: 'All documents signed page by page' }
         ]
       },
       {
         name: 'Financials & Practice Banking',
         icon: '📊',
         items: [
-          { name: 'Last 2 to 3 Years ITR', tag: 'Financial', icon: '📊', desc: 'Income Tax Returns with computation of professional income' },
-          { name: '12 Months Bank Account Statements', tag: 'Banking', icon: '🏦', desc: 'Primary operative bank account statements showing regular receipts' },
-          { name: 'Existing Equipment Loan Track', tag: 'Track', icon: '📈', desc: 'Sanction letter & repayment record for any active medical equipment loans' }
+          { name: 'Last 2 to 3 Years ITR', desc: 'Income Tax Returns with computation of professional income' },
+          { name: '12 Months Bank Account Statements', desc: 'Primary operative bank account statements showing regular receipts' },
+          { name: 'Existing Equipment Loan Track', desc: 'Sanction letter & repayment record for any active medical equipment loans' },
+          { name: 'Clean Track Record', desc: 'No cheque bounce history in operative accounts' }
         ]
       }
     ]
@@ -666,13 +674,13 @@ const documentData = {
 };
 
 window.documentData = documentData;
-window.currentDocCategory = 'vehicle';
+window.currentDocCategory = 'salaried';
 
 /**
- * Render modern fintech-grade 3-column document checklist hub
+ * Render modern fintech-grade 3-box document checklist hub
  */
 function renderFintechDocHub(key) {
-  if (!documentData[key]) key = 'vehicle';
+  if (!documentData[key]) key = 'salaried';
   window.currentDocCategory = key;
 
   // Highlight active button in category nav
@@ -689,79 +697,115 @@ function renderFintechDocHub(key) {
   if (!showcaseContainer) return;
 
   const data = documentData[key];
+  const g1 = data.groups[0] || { name: 'Applicant KYC', icon: '🪪', items: [] };
+  const g2 = data.groups[1] || { name: 'Income & Banking', icon: '💵', items: [] };
+  const g3 = data.groups[2] || { name: 'Asset & Underwriting', icon: '📋', items: [] };
 
   showcaseContainer.innerHTML = `
-    <!-- Header Hierarchy -->
     <div class="fintech-doc-header">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
         <div>
-          <div class="fintech-pill-badge">${escapeHTML(data.subtitle || 'Auto & Transport')}</div>
+          <div class="fintech-pill-badge">${escapeHTML(data.subtitle)}</div>
           <h3 class="fintech-heading">${escapeHTML(data.title)}</h3>
           <p class="fintech-subtitle">${escapeHTML(data.tagline)}</p>
         </div>
         <div class="fintech-header-actions">
-          <button type="button" class="fintech-btn-soft" onclick="window.print()">
-            🖨️ Print
-          </button>
-          <button type="button" class="fintech-btn-soft" onclick="copyDocListToClipboard('${key}')">
+          <button class="fintech-btn-soft" onclick="copyDocumentList('${key}')" title="Copy to clipboard">
             📋 Copy List
           </button>
-          <button type="button" class="fintech-btn-soft" onclick="shareDocsOnWhatsApp('${key}')">
-            💬 WhatsApp
+          <button class="fintech-btn-soft" onclick="shareDocListWhatsApp('${key}')" title="Send to WhatsApp">
+            💬 WhatsApp List
+          </button>
+          <button class="fintech-btn-soft" onclick="window.print()" title="Print checklist">
+            🖨️ Print
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Responsive 3-Column Card Grid -->
     <div class="fintech-grid-3">
-      ${data.groups.map(group => `
-        <div class="fintech-card">
-          <div class="fintech-card-head">
-            <span class="fintech-card-icon">${group.icon || '📄'}</span>
-            <h4 class="fintech-card-title">${escapeHTML(group.name)}</h4>
-          </div>
-          <div class="fintech-checklist">
-            ${group.items.map(item => `
-              <div class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">${escapeHTML(item.name)}</div>
-                  <div class="fintech-item-desc">${escapeHTML(item.desc)}</div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
+      <!-- Card 1 -->
+      <div class="fintech-card">
+        <div class="fintech-card-head">
+          <span class="fintech-card-icon">${g1.icon || '🪪'}</span>
+          <h4 class="fintech-card-title">${escapeHTML(g1.name)}</h4>
         </div>
-      `).join('')}
+        <ul class="fintech-checklist">
+          ${g1.items.map(item => `
+            <li class="fintech-item">
+              <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <div class="fintech-item-body">
+                <div class="fintech-item-title">${escapeHTML(item.name)}</div>
+                ${item.desc ? `<div class="fintech-item-desc">${escapeHTML(item.desc)}</div>` : ''}
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="fintech-card">
+        <div class="fintech-card-head">
+          <span class="fintech-card-icon">${g2.icon || '💵'}</span>
+          <h4 class="fintech-card-title">${escapeHTML(g2.name)}</h4>
+        </div>
+        <ul class="fintech-checklist">
+          ${g2.items.map(item => `
+            <li class="fintech-item">
+              <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <div class="fintech-item-body">
+                <div class="fintech-item-title">${escapeHTML(item.name)}</div>
+                ${item.desc ? `<div class="fintech-item-desc">${escapeHTML(item.desc)}</div>` : ''}
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="fintech-card">
+        <div class="fintech-card-head">
+          <span class="fintech-card-icon">${g3.icon || '📋'}</span>
+          <h4 class="fintech-card-title">${escapeHTML(g3.name)}</h4>
+        </div>
+        <ul class="fintech-checklist">
+          ${g3.items.map(item => `
+            <li class="fintech-item">
+              <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <div class="fintech-item-body">
+                <div class="fintech-item-title">${escapeHTML(item.name)}</div>
+                ${item.desc ? `<div class="fintech-item-desc">${escapeHTML(item.desc)}</div>` : ''}
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
     </div>
 
-    <!-- Pro Tip Advisory Strip -->
+    <!-- Underwriter Advisory Strip -->
     <div class="fintech-tip-strip">
-      <span style="font-size:20px; line-height:1;">💡</span>
+      <span style="font-size:20px; line-height:1; flex-shrink:0;">💡</span>
       <div class="fintech-tip-text">
-        <b>DK Underwriter Advisory:</b> ${escapeHTML(data.tip)}
+        <b>DK Underwriter Rule:</b> ${escapeHTML(data.tip || 'All document Xerox copies must be signed (self-attested) on every single page.')}
       </div>
     </div>
 
     <!-- Doorstep Assistance Banner -->
     <div class="fintech-doorstep-banner">
       <div>
-        <h4>🚚 Doorstep Document Collection &amp; File Audit Across Rajkot</h4>
-        <p>Avoid repeated branch visits and document rejection. Dhaval Khimani will personally review your file at your office or residence across Rajkot (Kalawad Road, Ring Road, Gondal Road, Metoda, Aji GIDC, Shapar, etc.).</p>
+        <h4>Need Doorstep File Pickup in Rajkot?</h4>
+        <p>Our loan executive collects and verifies all Xerox copies directly at your home or office across Rajkot &amp; Saurashtra.</p>
       </div>
       <div class="fintech-doorstep-actions">
-        <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('${escapeHTML(data.title)}')">
-          Apply for ${escapeHTML(data.title)} ↗
-        </button>
-        <a class="btn btn-outline btn-sm" style="border-color:#475569; color:#fff;" href="tel:9033012582">
-          📞 Call: 90330 12582
-        </a>
-        <a class="btn btn-whatsapp btn-sm" href="https://wa.me/919033012582?text=Hello%20Dhaval%20Bhai,%20I%20need%20doorstep%20document%20collection%20and%20loan%20guidance." target="_blank" rel="noopener">
-          💬 WhatsApp
-        </a>
+        <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:9033012582">📞 90330 12582</a>
+        <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:7048456000">📞 70484 56000</a>
+        <a class="btn btn-primary" href="#contact" onclick="enquireDocCategory()">Apply with this Checklist →</a>
       </div>
     </div>
   `;
@@ -785,64 +829,87 @@ function renderDocHubShowcase(key) {
  * Initial or default view render
  */
 function showDocs(key) {
-  selectDocCategory(key || window.currentDocCategory || 'vehicle');
+  renderFintechDocHub(key || window.currentDocCategory || 'salaried');
 }
 
 /**
  * Copy document list formatted to clipboard with visual toast
  */
-function copyDocListToClipboard(key) {
-  const data = documentData[key] || documentData['vehicle'];
+function copyDocumentList(key) {
+  const data = documentData[key] || documentData['salaried'];
   let text = `DK Consultancy - ${data.title} Document Requirements\n`;
   text += `Category: ${data.subtitle}\n`;
   text += `"${data.tagline}"\n\n`;
   data.groups.forEach((g, idx) => {
-    text += `[0${idx + 1}] ${g.name}:\n`;
+    text += `[${idx + 1}] ${g.name}:\n`;
     g.items.forEach(it => {
-      text += `  ✓ ${it.name}: ${it.desc}\n`;
+      text += `  ✓ ${it.name}${it.desc ? `: ${it.desc}` : ''}\n`;
     });
     text += `\n`;
   });
-  text += `DK Advisory: ${data.tip}\n\n`;
-  text += `Doorstep Service: Dhaval Khimani (+91 90330 12582), Rajkot.`;
+  text += `DK Underwriter Advisory: ${data.tip}\n\n`;
+  text += `Doorstep Service & Guidance:\n`;
+  text += `Dhaval Khimani (DK Consultancy, Rajkot)\n`;
+  text += `📞 90330 12582 / 70484 56000\n`;
+  text += `✉️ khimanidhaval@gmail.com\n`;
+  text += `📍 606, Dwarika Pride, 150ft Ring Rd, Rajkot`;
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => {
-      showDocToast('✅ Document checklist copied to clipboard!');
+      showToast('✅ Document checklist copied to clipboard!');
     }).catch(() => {
-      showDocToast('📋 Document list ready for sharing!');
+      showToast('📋 Document checklist ready for sharing!');
     });
   } else {
-    showDocToast('📋 Document list ready for sharing!');
+    showToast('📋 Document checklist ready for sharing!');
   }
 }
 
-/**
- * Show a sleek toast notification
- */
-function showDocToast(msg) {
-  let toast = document.getElementById('docToast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'docToast';
-    toast.className = 'doc-toast';
-    document.body.appendChild(toast);
-  }
-  toast.innerText = msg;
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2500);
+function copyDocListToClipboard(key) {
+  copyDocumentList(key);
 }
 
 /**
- * Select a loan directly from a Document Card and scroll to contact form
+ * Share document checklist directly to WhatsApp
  */
-function selectLoanDocEnquiry(loanTitle) {
+function shareDocListWhatsApp(key) {
+  const data = documentData[key] || documentData['salaried'];
+  let text = `*DK Consultancy - ${data.title} Document Requirements*\n`;
+  text += `*Category:* ${data.subtitle}\n`;
+  text += `"${data.tagline}"\n\n`;
+  data.groups.forEach((g, idx) => {
+    text += `*[${idx + 1}] ${g.name}:*\n`;
+    g.items.forEach(it => {
+      text += `✓ *${it.name}*${it.desc ? ` - ${it.desc}` : ''}\n`;
+    });
+    text += `\n`;
+  });
+  text += `*💡 DK Underwriter Rule:*\n${data.tip}\n\n`;
+  text += `*Doorstep Pickup & Free Advisory:*\n`;
+  text += `Dhaval Khimani · DK Consultancy\n`;
+  text += `📞 Phone: +91 90330 12582 / 70484 56000\n`;
+  text += `📍 606, Dwarika Pride, 150ft Ring Rd, Rajkot`;
+
+  const url = `https://wa.me/919033012582?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+function shareDocsOnWhatsApp(key) {
+  shareDocListWhatsApp(key);
+}
+
+/**
+ * Enquire for currently selected document category in contact form
+ */
+function enquireDocCategory() {
+  const key = window.currentDocCategory || 'salaried';
+  const data = documentData[key] || documentData['salaried'];
   const loanSelect = document.getElementById('loanType');
   if (loanSelect) {
     for (let opt of loanSelect.options) {
-      if (opt.text.toLowerCase().includes(loanTitle.toLowerCase()) || loanTitle.toLowerCase().includes(opt.text.toLowerCase())) {
+      if (opt.text.toLowerCase().includes(data.subtitle.toLowerCase()) || 
+          opt.text.toLowerCase().includes(data.title.toLowerCase()) ||
+          data.title.toLowerCase().includes(opt.text.toLowerCase())) {
         loanSelect.value = opt.value;
         break;
       }
@@ -854,126 +921,30 @@ function selectLoanDocEnquiry(loanTitle) {
   }
 }
 
-/**
- * Share document checklist directly to WhatsApp
- */
-function shareDocsOnWhatsApp(key) {
-  const data = documentData[key] || documentData['business'];
-  let text = `*DK Consultancy - ${data.title} Document Requirements*\n`;
-  text += `"${data.tagline}"\n\n`;
-  data.groups.forEach((g, idx) => {
-    text += `*[0${idx + 1}] ${g.name}:*\n`;
-    g.items.forEach(item => {
-      text += `• ${item.name} (${item.tag || 'Required'}) - ${item.desc}\n`;
-    });
-    text += `\n`;
-  });
-  text += `*DK Underwriter Tip:* ${data.tip}\n\n`;
-  text += `*Doorstep Service & Consultation:*\n`;
-  text += `Dhaval Khimani (DK Consultancy, Rajkot)\n📞 Phone: +91 90330 12582\n📍 Kalawad Road, Rajkot`;
-
-  const url = `https://wa.me/919033012582?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
-}
-
-/**
- * Enquire for currently selected document category in contact form
- */
 function enquireCurrentDocLoan() {
-  const currentKey = window.currentDocCategory || 'business';
-  const data = documentData[currentKey] || documentData['business'];
-  selectLoanDocEnquiry(data.title);
+  enquireDocCategory();
 }
 
-/* ==========================================================================
+window.renderFintechDocHub = renderFintechDocHub;
+window.selectDocCategory = selectDocCategory;
+window.renderDocHubShowcase = renderDocHubShowcase;
+window.showDocs = showDocs;
+window.copyDocumentList = copyDocumentList;
+window.copyDocListToClipboard = copyDocListToClipboard;
+window.shareDocListWhatsApp = shareDocListWhatsApp;
+window.shareDocsOnWhatsApp = shareDocsOnWhatsApp;
+window.enquireDocCategory = enquireDocCategory;
+window.enquireCurrentDocLoan = enquireCurrentDocLoan;
 
-/* ==========================================================================
-   5. "Ask DK" AI Smart Finance Assistant
-   ========================================================================== */
-function addChatBubble(text, type) {
-  const chatWindow = document.getElementById('chat');
-  if (!chatWindow) return;
-
-  const bubble = document.createElement('div');
-  bubble.className = `bubble ${type}`;
-  bubble.innerHTML = text;
-  chatWindow.appendChild(bubble);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
-
-function quickChat(text) {
-  const input = document.getElementById('chatInput');
-  if (input) {
-    input.value = text;
-    sendChat();
-  }
-}
-
-function sendChat() {
-  const input = document.getElementById('chatInput');
-  if (!input) return;
-  const q = input.value.trim();
-  if (!q) return;
-
-  addChatBubble(escapeHTML(q), 'user');
-  input.value = '';
-
-  // Show typing indicator
-  const chatWindow = document.getElementById('chat');
-  const typing = document.createElement('div');
-  typing.className = 'bubble bot typing';
-  typing.id = 'chatTypingIndicator';
-  typing.textContent = 'DK Assistant is typing...';
-  chatWindow.appendChild(typing);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-
-  setTimeout(() => {
-    const el = document.getElementById('chatTypingIndicator');
-    if (el) el.remove();
-
-    const reply = generateBotResponse(q);
-    addChatBubble(reply, 'bot');
-  }, 400);
-}
-
-function generateBotResponse(query) {
-  const s = query.toLowerCase();
-
-  if (/cibil|credit score|score/.test(s)) {
-    return 'For most unsecured business loans and personal loans, lenders prefer a <b>CIBIL score of 720+</b>. For secured loans (like Home Loan or LAP), flexibility is available even with scores around 650–700. If you have past settlement or overdue issues, DK Consultancy can review your credit report and advise on eligible NBFC options.';
-  }
-  if (/cgtmse|mudra|collateral free|subsidy|guarantee/.test(s)) {
-    return '<b>CGTMSE</b> allows eligible micro and small businesses to obtain loans up to <b>₹5 Crore</b> without physical collateral or third-party guarantee. Government fees apply. We help prepare your project report, Udyam registration, and bank proposal to meet CGTMSE underwriting criteria.';
-  }
-  if (/document|paper|file|dastavej|kyc|itr|salary/.test(s)) {
-    return 'Standard requirements include: <b>Identity KYC</b> (PAN & Aadhaar), <b>Address Proof</b> (Electricity bill), <b>Income Proof</b> (Salary slips/Form 16 or 3-year ITRs with computation), and <b>Banking</b> (12 months statements). Check our interactive <i>Document Checklist</i> above for your specific category!';
-  }
-  if (/interest|rate|byaj|vyaj|roi|percentage/.test(s)) {
-    return 'Indicative starting rates in Gujarat currently: <b>Home Loans:</b> ~8.40% – 9.25%, <b>LAP:</b> ~9.25% – 11.50%, <b>Business Loans:</b> ~11.50% – 16%, <b>Gold Loans:</b> from 9.0%. Actual rates depend on your business profile, turnover, credit score, and chosen lender.';
-  }
-  if (/emi|calculate|formula|repay|monthly/.test(s)) {
-    return 'You can use our interactive <b>EMI Calculator</b> on this page! It features live sliders to test loan amounts up to ₹5 Crore and tenures up to 30 years with an instant principal vs interest breakdown.';
-  }
-  if (/home loan|house|plot|flat|construction/.test(s)) {
-    return 'We provide end-to-end guidance for <b>Home Loans</b>, including property title verification, legal search, valuation report, and subsidy assistance. We work with leading banks (SBI, HDFC, ICICI, Bank of Baroda, etc.) and housing finance companies in Rajkot.';
-  }
-  if (/business|working capital|overdraft|cc|od/.test(s)) {
-    return 'We assist businesses with <b>Unsecured Business Loans</b>, <b>Cash Credit / Overdraft (CC/OD)</b> limits, machinery purchase finance, and bill discounting. Minimum 1 to 2 years business vintage with GST filing is typically expected.';
-  }
-  if (/dhaval|contact|phone|call|mobile|number|whatsapp/.test(s)) {
-    return 'You can directly contact <b>Dhaval Khimani</b> at <b><a href="tel:9033012582">90330 12582</a></b> or <b><a href="tel:7048456000">70484 56000</a></b>. You can also chat on WhatsApp by clicking the WhatsApp buttons on this site.';
-  }
-  if (/address|office|location|where|ramapir|sadbhavna|dwarika/.test(s)) {
-    return 'Our office is located at:<br><b>606, Dwarika Pride, 150 Feet Ring Road, near Sadbhavna Hospital, Ramapir Chowkdi, Rajkot, Gujarat – 360007</b>.<br>Office hours: Monday to Saturday, 9:30 AM to 7:30 PM.';
-  }
-  if (/turnaround|time|days|how long|fast|urgent/.test(s)) {
-    return 'Typical processing turnaround:<br>• Gold Loan: 1–3 hours<br>• Personal Loan: 24–48 hours<br>• Business Loan: 3–5 working days<br>• Home Loan / LAP: 7–12 working days (due to title legal & technical evaluation).';
-  }
-  if (/fee|charge|upfront|commission/.test(s)) {
-    return 'DK Consultancy maintains complete transparency. We do <b>not</b> ask for upfront consultation fees. Bank processing fees and legal/valuation charges (where applicable) are paid directly to the financing institution.';
-  }
-
-  return 'Thank you for reaching out! I can assist with loan categories, document checklists, CIBIL tips, EMI calculations, and application steps. You can also submit the enquiry form below or call <b>Dhaval Khimani at 90330 12582</b> for personalized advisory.';
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    documentData,
+    renderFintechDocHub,
+    selectDocCategory,
+    copyDocumentList,
+    shareDocListWhatsApp,
+    enquireDocCategory
+  };
 }
 
 /* ==========================================================================

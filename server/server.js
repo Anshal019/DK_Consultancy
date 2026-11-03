@@ -140,12 +140,10 @@ const server = http.createServer((req, res) => {
     const isCompressible = /text|javascript|json|xml|svg/.test(contentType);
     const acceptEncoding = req.headers['accept-encoding'] || '';
 
-    // Cache control
-    if (ext === '.html') {
-      res.setHeader('Cache-Control', 'no-cache');
-    } else {
-      res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day
-    }
+    // Cache control (no caching to ensure client immediately gets fresh code)
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
 
     const fileStream = fs.createReadStream(filePath);
 
