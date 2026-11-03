@@ -928,12 +928,257 @@ h1 em {
 }
 
 /* ==========================================================================
-   Document Checklist
+   Document Requirements & Direct All-Category Cards
    ========================================================================== */
-.checklist-container {
-  margin: 16px 0;
+.doc-filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  align-items: center;
 }
 
+.doc-filter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+}
+
+.doc-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.doc-filter-btn:hover {
+  border-color: var(--primary);
+  background: var(--cream);
+  transform: translateY(-1px);
+}
+
+.doc-filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(232, 117, 40, 0.28);
+}
+
+/* 9 Document Cards Grid */
+.doc-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+  .doc-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.doc-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: relative;
+}
+
+.doc-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.doc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--line-light);
+}
+
+.doc-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-card-icon {
+  font-size: 26px;
+  width: 44px;
+  height: 44px;
+  background: var(--cream);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--maroon);
+  margin: 0 0 2px;
+  line-height: 1.3;
+}
+
+.doc-card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.doc-card-badge {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.doc-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.doc-group-box {
+  background: #fdfbf9;
+  border: 1px solid var(--line-light);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.doc-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doc-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.doc-list-bullet {
+  font-size: 12px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.doc-list-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-list-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.doc-list-desc {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.doc-card-tip {
+  background: #fdf6ec;
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #633c16;
+  margin-bottom: 16px;
+}
+
+.doc-card-tip b {
+  color: var(--primary-hover);
+}
+
+.doc-card-footer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-light);
+}
+
+/* Doorstep Highlight Banner below 9 cards */
+.doc-doorstep-fullbanner {
+  background: linear-gradient(135deg, #f0f7f3 0%, #e2f1e9 100%);
+  border: 1px solid #c7e6d4;
+  border-radius: 16px;
+  padding: 22px 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.doc-doorstep-fullbanner h4 {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: #1a4d33;
+  margin: 0 0 4px;
+}
+
+.doc-doorstep-fullbanner p {
+  font-size: 13px;
+  color: #2c6849;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Legacy & Compatibility */
 .checklist {
   list-style: none;
   padding: 0;
@@ -941,32 +1186,8 @@ h1 em {
 }
 
 .checklist-item {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border-bottom: 1px solid #f2e7e1;
-  font-size: 13.5px;
-  color: #55443d;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  transition: var(--transition);
-}
-
-.checklist-item:hover {
-  background: var(--cream);
-}
-
-.checklist-item input[type="checkbox"] {
-  width: 17px;
-  height: 17px;
-  accent-color: var(--primary);
-  margin-top: 3px;
-  cursor: pointer;
-}
-
-.checklist-item.checked {
-  text-decoration: line-through;
-  opacity: 0.65;
+  padding: 8px 10px;
+  font-size: 13px;
 }
 
 /* ==========================================================================

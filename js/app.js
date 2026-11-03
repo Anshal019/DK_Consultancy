@@ -337,146 +337,450 @@ function findLoan() {
 }
 
 /* ==========================================================================
-   4. Document Checklist by Category
+   4. Document Requirements & Category Guide (Direct Select & Grouped Info)
    ========================================================================== */
-const documentChecklists = {
-  salaried: {
-    title: 'Salaried Applicant Checklist',
-    items: [
-      'Passport size photographs (recent)',
-      'Identity Proof: PAN Card and Aadhaar Card',
-      'Address Proof: Electricity bill / Passport / Voter ID',
-      'Last 6 months’ Salary Slips with company seal/signature',
-      'Last 1 year Bank Account Statement where salary is credited',
-      'Form 16 or Income Tax Returns (ITR) for last 2 financial years',
-      'Appointment letter / Current employment certificate and Company ID copy'
-    ]
-  },
+const documentData = {
   business: {
-    title: 'Business Loan & Working Capital Checklist',
-    items: [
-      'KYC of Proprietor / Partners / Directors (PAN & Aadhaar)',
-      'Business Registration: GST Certificate, Udyam Aadhaar, Shop & Establishment Gumastadhara',
-      'Partnership Deed / MOA & AOA with Certificate of Incorporation',
-      'Last 3 years Audited Financials with Balance Sheet, P&L, Audit Report & 3CA/3CB',
-      'Last 3 years Income Tax Returns (ITR) with computation of income',
-      'Last 12 months Bank Account Statements for all Current & Savings accounts',
-      'Latest GST-3B returns for current financial year',
-      'Statement of Account for existing active loans & repayment track record'
+    title: 'Business Loan & Working Capital',
+    icon: '🏢',
+    tagline: 'Standard document portfolio for unsecured business loans, MSME credit, and CC/OD limits.',
+    tip: 'Keep your 12 months GST-3B returns reconciled with your current account banking turnover for fastest approval.',
+    groups: [
+      {
+        name: 'KYC & Promoter Proofs',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card', desc: 'Mandatory for firm, proprietor, and all active partners / directors' },
+          { name: 'Aadhaar Card', desc: 'UIDAI Aadhaar of all promoters with active mobile link for e-verification' },
+          { name: 'Passport Photos', desc: 'Recent passport-sized photographs of all key promoters' },
+          { name: 'Residence Proof', desc: 'Latest electricity bill or registered rent agreement of all promoters' }
+        ]
+      },
+      {
+        name: 'Business Registration & Constitution',
+        icon: '📑',
+        items: [
+          { name: 'GST Certificate', desc: 'GSTIN registration certificate and active 3B filing status' },
+          { name: 'Udyam Aadhaar', desc: 'MSME registration certificate for priority sector interest subventions' },
+          { name: 'Shop & Establishment', desc: 'Gumastadhara license or local municipal trade clearance' },
+          { name: 'Entity Documents', desc: 'Partnership deed / MOA & AOA with Certificate of Incorporation (for Pvt Ltd)' }
+        ]
+      },
+      {
+        name: 'Financials & Banking Statements',
+        icon: '📊',
+        items: [
+          { name: 'Audited Financials', desc: 'Last 3 years Balance Sheets, P&L, Audit Reports & CA 3CA/3CB forms' },
+          { name: 'Income Tax Returns (ITR)', desc: 'Last 3 years complete ITR acknowledgements with computation of income' },
+          { name: '12 Months Bank Statements', desc: 'Original statements for all Current & Savings accounts (PDF / e-statement)' },
+          { name: 'GSTR-3B Returns', desc: 'Monthly / quarterly GST-3B filings for the current financial year' },
+          { name: 'Existing Loan Track', desc: 'Sanction letters & 12-month statement of accounts for active ongoing credit lines' }
+        ]
+      }
     ]
   },
   home: {
-    title: 'Home Loan & Construction Checklist',
-    items: [
-      'Applicant and Co-Applicant KYC (PAN & Aadhaar)',
-      'Income Proof: Salary slips & Form 16 (for salaried) OR 3 years ITR & Financials (for self-employed)',
-      'Last 1 year Bank Account statement',
-      'Property Documents: Agreement to Sell, Allotment letter, Approved Building Plan',
-      'Chain of Title Deeds / 30-year Search Report / Title Clearance',
-      'N.A. Permission and Municipal / Development Authority clearance (Rajkot RMC / RUDA)',
-      'Payment receipts of advance token / margin money paid to builder or seller'
+    title: 'Home Loan & Construction',
+    icon: '🏠',
+    tagline: 'Required documentation for new flat purchase, bungalow construction, and plot loans.',
+    tip: 'Ensure property chain documents (Sale deeds) have clear Rajkot RMC or RUDA approvals without unapproved deviations.',
+    groups: [
+      {
+        name: 'KYC & Identity Proofs',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card', desc: 'Mandatory for primary applicant and all co-applicants / co-owners' },
+          { name: 'Aadhaar Card', desc: 'Identity and address proof for all registered co-owners' },
+          { name: 'Passport Photos', desc: 'Recent colored passport photos of all applicants' }
+        ]
+      },
+      {
+        name: 'Income & Banking Proofs',
+        icon: '💵',
+        items: [
+          { name: 'Salaried Applicants', desc: 'Last 6 months salary slips, Form 16 (last 2 years), and 12-month salary bank statement' },
+          { name: 'Self-Employed Applicants', desc: 'Last 3 years ITR with computation, Balance Sheet, P&L, and 12 months current bank statements' },
+          { name: 'Bank Statement', desc: 'Latest 12 months comprehensive bank statement showing active balance' }
+        ]
+      },
+      {
+        name: 'Property & Title Documents',
+        icon: '🏗️',
+        items: [
+          { name: 'Agreement to Sell / Allotment Letter', desc: 'Registered agreement to sell or builder allotment letter' },
+          { name: 'Approved Building Plan', desc: 'RMC / RUDA sanctioned building blueprint and layout approval' },
+          { name: 'Title Search & N.A. Clearance', desc: '30-year title search report, N.A. (Non-Agricultural) order, and legal clearance' },
+          { name: 'Advance Payment Proof', desc: 'Margin money receipts and payment trail to builder/seller' }
+        ]
+      }
     ]
   },
   mortgage: {
-    title: 'Mortgage / Loan Against Property (LAP) Checklist',
-    items: [
-      'Applicant and Co-Applicant / Property Co-owners KYC',
-      'Complete Property Chain documents (Sale Deed, Gift Deed, Sanction Plan)',
-      'Latest Property Tax paid receipt and Electricity bill in applicant/owner name',
-      'Income proof: 3 years ITR, P&L, Balance Sheet and 12 months Bank Statements',
-      'Business proof (if business owner) or Salary credentials (if salaried)',
-      'Existing loan sanction letters and track record if transferring balance'
+    title: 'Mortgage / Loan Against Property (LAP)',
+    icon: '🏘️',
+    tagline: 'Leverage your residential, commercial, or industrial property to unlock high-value capital.',
+    tip: 'Property co-owners must be included as co-applicants. Both self-occupied and leased properties are eligible.',
+    groups: [
+      {
+        name: 'Applicant & Co-Owner KYC',
+        icon: '🪪',
+        items: [
+          { name: 'PAN & Aadhaar Cards', desc: 'Mandatory for applicant, co-applicant, and all property co-owners' },
+          { name: 'Passport Photographs', desc: '2 recent passport photos of all signatories' },
+          { name: 'Current Address Proof', desc: 'Latest electricity bill / municipal property tax bill' }
+        ]
+      },
+      {
+        name: 'Property Title Chain Documents',
+        icon: '📂',
+        items: [
+          { name: 'Original Sale Deed / Conveyance', desc: 'Registered chain of title deeds tracing ownership' },
+          { name: 'Sanctioned Layout Plan', desc: 'Approved municipal drawing from local civic authority' },
+          { name: 'Latest Tax & Utility Bills', desc: 'Recent municipal property tax receipt and electricity bill in owner name' },
+          { name: 'Occupancy / Completion Certificate', desc: 'BU (Building Use) permission or completion certificate' }
+        ]
+      },
+      {
+        name: 'Income & Banking Records',
+        icon: '📊',
+        items: [
+          { name: 'ITR & Computations', desc: 'Last 3 years Income Tax Returns with detailed computation' },
+          { name: 'Audited Financials', desc: 'Last 3 years Balance Sheets & P&L (for self-employed / business owners)' },
+          { name: '12 Months Bank Statements', desc: 'Comprehensive bank statements for all active operative accounts' },
+          { name: 'Existing Loan Track', desc: 'If balance transfer: Sanction letter, foreclosure letter & List of Original Documents (LOD)' }
+        ]
+      }
+    ]
+  },
+  salaried: {
+    title: 'Salaried Applicant Documents',
+    icon: '👔',
+    tagline: 'Fast-track personal, home, and vehicle loan files for salaried corporate, PSU, and govt professionals.',
+    tip: 'Ensure that salary credits in your bank statement match your net payslip amounts consistently.',
+    groups: [
+      {
+        name: 'Identity & Address KYC',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card', desc: 'Mandatory for credit score checking and tax reporting' },
+          { name: 'Aadhaar Card', desc: 'Address verification and digital e-sign' },
+          { name: 'Current Residence Proof', desc: 'Electricity bill, piped gas bill, or registered rent agreement' },
+          { name: 'Passport Photos', desc: 'Recent colored passport photos' }
+        ]
+      },
+      {
+        name: 'Employment Credentials',
+        icon: '💼',
+        items: [
+          { name: 'Company ID Card', desc: 'Copy of valid corporate employee identity badge' },
+          { name: 'Appointment Letter / Confirmation', desc: 'Proof of total employment continuity and probation clearance' },
+          { name: 'Official Email ID Verification', desc: 'Work email address for employer confirmation' }
+        ]
+      },
+      {
+        name: 'Salary & Banking Proofs',
+        icon: '💵',
+        items: [
+          { name: 'Salary Slips', desc: 'Latest 3 to 6 months salary slips stamped by HR or digitally signed' },
+          { name: 'Form 16 / Tax Returns', desc: 'Form 16 (Part A & B) for last 2 financial years or ITR acknowledgement' },
+          { name: 'Salary Account Bank Statement', desc: 'Last 6 to 12 months updated bank statement where salary is credited' }
+        ]
+      }
     ]
   },
   personal: {
-    title: 'Personal Loan Checklist',
-    items: [
-      'Passport size photographs',
-      'PAN Card (mandatory) and Aadhaar Card',
-      'Current residence address proof (Electricity bill, Rent agreement if rented)',
-      'Last 3 to 6 months salary slips',
-      'Last 6 months bank statement showing regular salary deposits',
-      'Details of any existing personal loans, credit cards, or car EMIs'
+    title: 'Personal Loan (Unsecured)',
+    icon: '💼',
+    tagline: 'Zero-collateral personal credit with instant verification and fast-track bank sanction.',
+    tip: 'Keep CIBIL score above 700 and maintain minimal credit card utilization for instant approval.',
+    groups: [
+      {
+        name: 'Identity & KYC Proofs',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card', desc: 'Mandatory identity document for CIBIL inquiry' },
+          { name: 'Aadhaar Card', desc: 'Identity & address verification' },
+          { name: 'Passport Photos', desc: '2 recent passport size photographs' }
+        ]
+      },
+      {
+        name: 'Income & Employment Proofs',
+        icon: '📈',
+        items: [
+          { name: 'Payslips / Income Certificate', desc: 'Last 3 months salary slips (for salaried) OR 2 years ITR (for self-employed)' },
+          { name: 'Company ID or Business Proof', desc: 'Valid employer identity card or business registration' }
+        ]
+      },
+      {
+        name: 'Banking & Repayment Track',
+        icon: '🏦',
+        items: [
+          { name: '6 Months Bank Statement', desc: 'Primary bank account statement showing salary or regular income credits' },
+          { name: 'Active Loan Details', desc: 'Repayment track or sanction letter of existing credit cards or ongoing EMIs' }
+        ]
+      }
     ]
   },
   gold: {
-    title: 'Gold Loan Checklist',
-    items: [
-      'Identity & Address KYC: PAN Card and Aadhaar Card / Voter ID',
-      'Recent passport size photographs',
-      'Gold ornaments / coins for professional karat purity verification and weighing',
-      'No formal income proof or CIBIL required for standard gold advances'
+    title: 'Gold Loan (Instant Liquidity)',
+    icon: '🪙',
+    tagline: 'Instant cash advance against 18k to 24k gold jewellery and ornaments with zero paperwork hassle.',
+    tip: 'No income tax returns, salary slips, or high credit scores are required. Get funded within 30 minutes.',
+    groups: [
+      {
+        name: 'Essential KYC Documents',
+        icon: '🪪',
+        items: [
+          { name: 'Identity Proof', desc: 'PAN Card (mandatory for high-value advances)' },
+          { name: 'Address Proof', desc: 'Aadhaar Card, Voter ID, Driving License, or Passport' },
+          { name: 'Passport Photos', desc: '2 recent passport size color photos' }
+        ]
+      },
+      {
+        name: 'Collateral & Verification',
+        icon: '🥇',
+        items: [
+          { name: 'Gold Ornaments / Coins', desc: 'Gold jewellery, hallmarked ornaments, or certified coins for physical purity appraisal' },
+          { name: 'Purchase Invoices (Optional)', desc: 'Original gold jeweler invoice if available (helpful for high-value sanctions)' }
+        ]
+      },
+      {
+        name: 'No Income Proof Required',
+        icon: '✅',
+        items: [
+          { name: 'Zero Financial Documents', desc: 'No salary slips, no ITR, and no audited balance sheet required' },
+          { name: 'Flexible Repayment', desc: 'Bullet repayment, monthly interest EMI, or flexible overdraft options' }
+        ]
+      }
     ]
   },
   vehicle: {
-    title: 'Car & Commercial Vehicle Checklist',
-    items: [
-      'Applicant KYC (PAN, Aadhaar, Driving License)',
-      'Income Proof: 2 years ITR or 6 months salary slips',
-      'Last 6 months bank statement',
-      'Vehicle Quotation / Proforma Invoice from authorized dealership',
-      'For used vehicles: RC Book copy, valid Insurance policy, and fitness certificate'
+    title: 'Car & Commercial Vehicle Loan',
+    icon: '🚗',
+    tagline: 'Financing solutions for private passenger cars, commercial transport fleets, and used cars.',
+    tip: 'Up to 90% to 100% on-road funding is available for new cars with flexible 1 to 7 year repayment terms.',
+    groups: [
+      {
+        name: 'Applicant KYC',
+        icon: '🪪',
+        items: [
+          { name: 'PAN Card & Aadhaar', desc: 'Mandatory identification documents' },
+          { name: 'Driving License', desc: 'Valid driving license of applicant or co-applicant' },
+          { name: 'Passport Photos', desc: '2 recent passport size photographs' }
+        ]
+      },
+      {
+        name: 'Income & Banking',
+        icon: '💵',
+        items: [
+          { name: 'Salaried Applicants', desc: 'Last 3-6 months salary slips and 6 months salary bank statement' },
+          { name: 'Self-Employed / Business', desc: 'Last 2 years ITR with computation and 6 months bank statement' },
+          { name: 'Commercial Fleets', desc: 'Existing fleet RC copies and transport contracts (if commercial)' }
+        ]
+      },
+      {
+        name: 'Vehicle Quotation / Documents',
+        icon: '🚙',
+        items: [
+          { name: 'New Vehicle: Proforma Invoice', desc: 'Official price quotation & dealer proforma invoice with chassis booking details' },
+          { name: 'Used Vehicle: RC Book Copy', desc: 'Valid vehicle Registration Certificate, Insurance policy, and Fitness certificate' }
+        ]
+      }
     ]
   },
   machinery: {
-    title: 'Machinery & Equipment Checklist',
-    items: [
-      'Business KYC and entity registration certificates',
-      'Proforma Invoice / Quotation of machinery from manufacturer/authorized dealer',
-      'Last 3 years Financial statements and Income Tax Returns',
-      'Last 1 year Current account statements',
-      'Brief project note explaining expected capacity increase and cash flow generation'
+    title: 'Machinery & Equipment Financing',
+    icon: '⚙️',
+    tagline: 'Capital expenditure loans for CNC machines, packaging lines, engineering plants, and tooling.',
+    tip: 'We assist with Gujarat Industrial Subsidies and Central CLCSS schemes to reduce your net effective interest rate.',
+    groups: [
+      {
+        name: 'Entity & Promoter KYC',
+        icon: '🪪',
+        items: [
+          { name: 'Promoter KYC', desc: 'PAN and Aadhaar cards of all directors, partners, and key managers' },
+          { name: 'Business Registration', desc: 'GST Certificate, Udyam MSME Registration, and Factory / Shop license' },
+          { name: 'Electricity Bill', desc: 'Latest manufacturing facility / industrial unit electricity bill' }
+        ]
+      },
+      {
+        name: 'Machinery Quotation & Specs',
+        icon: '📜',
+        items: [
+          { name: 'Proforma Invoice / Quotation', desc: 'Official commercial proforma invoice from certified machinery manufacturer/dealer' },
+          { name: 'Technical Specs & Output Note', desc: 'Machine specifications, warranty details, and installation layout' },
+          { name: 'Advance Margin Proof', desc: 'Proof of advance token paid to machine supplier (if already remitted)' }
+        ]
+      },
+      {
+        name: 'Financials & Cash Flow',
+        icon: '📊',
+        items: [
+          { name: 'Audited Financials', desc: 'Last 3 years Balance Sheets, P&L, Audit Reports, and 3CA/3CB' },
+          { name: 'Income Tax Returns (ITR)', desc: 'Last 3 years complete ITRs with computation' },
+          { name: '12 Months Current Account Statement', desc: 'Statements of all operative business bank accounts' }
+        ]
+      }
     ]
   },
   doctor: {
-    title: 'Doctor & Professional Loan Checklist',
-    items: [
-      'KYC of applicant (PAN & Aadhaar)',
-      'Educational Degree Certificate (MBBS, MD, MS, BDS, CA Certificate)',
-      'Registration Certificate with State Medical Council / MCI / ICAI',
-      'Clinic / Hospital / Office ownership or rent agreement proof',
-      'Last 2 years ITRs and 12 months primary bank statement'
+    title: 'Doctor & Healthcare Professional Loan',
+    icon: '🩺',
+    tagline: 'Customized credit lines for doctors, dentists, diagnostic centers, and healthcare practitioners.',
+    tip: 'Special concessional interest rates and pre-approved limits up to ₹50 Lakhs without any property collateral.',
+    groups: [
+      {
+        name: 'KYC & Professional Credentials',
+        icon: '🪪',
+        items: [
+          { name: 'PAN & Aadhaar Cards', desc: 'Mandatory identity verification' },
+          { name: 'Medical Degree Certificate', desc: 'MBBS / MD / MS / BDS / MDS / BHMS / BAMS qualifying degree certificate' },
+          { name: 'Council Registration', desc: 'Valid registration certificate from State Medical Council or National Medical Commission' },
+          { name: 'Passport Photos', desc: 'Recent color passport photos' }
+        ]
+      },
+      {
+        name: 'Clinic & Practice Records',
+        icon: '🏥',
+        items: [
+          { name: 'Clinic / Hospital Ownership or Lease', desc: 'Property ownership deed or registered rent lease agreement for clinic' },
+          { name: 'Establishment Clearance', desc: 'Local municipal clinical establishment certificate / trade permit' }
+        ]
+      },
+      {
+        name: 'Financials & Banking',
+        icon: '📊',
+        items: [
+          { name: 'Income Tax Returns (ITR)', desc: 'Last 2 to 3 years ITR with computation of income' },
+          { name: 'Bank Account Statements', desc: 'Last 12 months primary current or savings bank account statements' },
+          { name: 'Existing Practice Loan Track', desc: 'Sanction letter & repayment record for any active medical equipment loans' }
+        ]
+      }
     ]
   }
 };
 
-function showDocs() {
-  const select = document.getElementById('docType');
-  const output = document.getElementById('docOutput');
-  if (!select || !output) return;
+// Global state for document selection
+window.currentDocCategory = 'business';
+window.documentData = documentData;
 
-  const key = select.value;
-  const data = documentChecklists[key] || documentChecklists['salaried'];
+// Backwards compatibility for any script accessing documentChecklists
+const documentChecklists = {};
+Object.keys(documentData).forEach(k => {
+  const allItems = [];
+  documentData[k].groups.forEach(g => {
+    g.items.forEach(it => allItems.push(`${it.name}: ${it.desc}`));
+  });
+  documentChecklists[k] = {
+    title: documentData[k].title,
+    items: allItems
+  };
+});
+window.documentChecklists = documentChecklists;
 
-  output.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-      <h4 style="margin:0; font-size:17px; color:var(--maroon);">${data.title}</h4>
-      <button class="btn btn-soft btn-sm" onclick="window.print()">
-        🖨️ Print / Save Checklist
-      </button>
-    </div>
-    <ul class="checklist">
-      ${data.items.map((item, idx) => `
-        <li class="checklist-item">
-          <input type="checkbox" id="chk_${idx}" onchange="toggleChecklistItem(this)">
-          <label for="chk_${idx}" style="cursor:pointer; flex:1;">${item}</label>
-        </li>
-      `).join('')}
-    </ul>
-    <p class="notice">
-      <b>Next Step:</b> You can verify which documents you already have ready. DK Consultancy will assist you with doorstep collection and bank file preparation.
-    </p>
-  `;
-}
+/**
+ * Filter Document Cards by Category or show all
+ */
+function filterDocCards(category) {
+  const buttons = document.querySelectorAll('.doc-filter-btn');
+  buttons.forEach(btn => {
+    if (btn.getAttribute('data-filter') === category) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
 
-function toggleChecklistItem(chk) {
-  const li = chk.closest('.checklist-item');
-  if (chk.checked) {
-    li.classList.add('checked');
-  } else {
-    li.classList.remove('checked');
+  const cards = document.querySelectorAll('.doc-card');
+  cards.forEach(card => {
+    if (category === 'all' || card.getAttribute('data-category') === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (category !== 'all') {
+    const targetCard = document.querySelector(`.doc-card[data-category="${category}"]`);
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 }
+
+/**
+ * Select a loan directly from a Document Card and scroll to contact form
+ */
+function selectLoanDocEnquiry(loanTitle) {
+  const loanSelect = document.getElementById('loanType');
+  if (loanSelect) {
+    for (let opt of loanSelect.options) {
+      if (opt.text.toLowerCase().includes(loanTitle.toLowerCase()) || loanTitle.toLowerCase().includes(opt.text.toLowerCase())) {
+        loanSelect.value = opt.value;
+        break;
+      }
+    }
+  }
+  const contact = document.getElementById('contact');
+  if (contact) {
+    contact.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+/**
+ * Direct selection of a document category (legacy & fallback compatibility)
+ */
+function selectDocCategory(key) {
+  if (typeof filterDocCards === 'function') {
+    filterDocCards(key);
+  }
+}
+
+/**
+ * Fallback function showDocs() called on init or dropdown changes
+ */
+function showDocs(key) {
+  if (!key || key === 'all') {
+    if (typeof filterDocCards === 'function') {
+      filterDocCards('all');
+    }
+  } else {
+    filterDocCards(key);
+  }
+}
+
+/**
+ * Share document checklist directly to WhatsApp
+ */
+function shareDocsOnWhatsApp(key) {
+  const data = documentData[key] || documentData['business'];
+  let text = `*DK Consultancy - ${data.title} Document Requirements*\n`;
+  text += `"${data.tagline}"\n\n`;
+  data.groups.forEach(g => {
+    text += `*${g.name}:*\n`;
+    g.items.forEach(item => {
+      text += `• ${item.name} - ${item.desc}\n`;
+    });
+    text += `\n`;
+  });
+  text += `*DK Tip:* ${data.tip}\n\n`;
+  text += `*Doorstep Service & Consultation:*\n`;
+  text += `Dhaval Khimani (DK Consultancy, Rajkot)\n📞 Phone: +91 90330 12582\n📍 Kalawad Road, Rajkot`;
+
+  const url = `https://wa.me/919033012582?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+/**
+ * Enquire for currently selected document category in contact form
+ */
+function enquireCurrentDocLoan() {
+  const currentKey = window.currentDocCategory || 'business';
+  const data = documentData[currentKey] || documentData['business'];
+  selectLoanDocEnquiry(data.title);
+}
+
+/* ==========================================================================
 
 /* ==========================================================================
    5. "Ask DK" AI Smart Finance Assistant
