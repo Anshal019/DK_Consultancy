@@ -541,912 +541,218 @@
     </div>
   </section>
 
-  <!-- Document Guide Section -->
-  <section class="section" id="documents">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Prepare with Confidence</div>
-        <h2>Complete Document Guide by Loan Category</h2>
+  <!-- Modern Fintech Document Checklist Section (Stripe / CRED / BankBazaar UI) -->
+  <section class="section" id="documents" style="padding-top: 24px; padding-bottom: 48px;">
+    <div class="fintech-doc-container">
+
+      <!-- Loan Type Overview Header -->
+      <div class="section-head" style="margin-bottom: 24px;">
+        <div class="kicker">Underwriting Documentation Hub</div>
+        <h2>Loan Document Checklist by Category</h2>
         <p>
-          Review standard file requirements for every loan category below. Our team personally verifies and audits all paperwork before submitting to bank credit underwriters.
+          Select your loan category below to view the verified 3-pillar underwriter checklist. Pre-screened documentation ensures 100% first-attempt sanction with zero branch rejection.
         </p>
       </div>
 
-      <!-- Quick Filter Bar -->
-      <div class="doc-filter-bar" role="tablist">
-        <span class="doc-filter-label">Quick Jump:</span>
-        <button type="button" class="doc-filter-btn active" data-filter="all" onclick="filterDocCards('all')">
-          🌟 All Categories (9)
+      <!-- Category Navigation Pills -->
+      <div class="fintech-cat-nav" role="tablist" aria-label="Select loan document category">
+        <button type="button" class="fintech-tab-btn active" data-cat="vehicle" onclick="selectDocCategory('vehicle')">
+          <span class="tab-icon">🚗</span> Car &amp; Commercial Vehicle
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="business" onclick="filterDocCards('business')">
-          🏢 Business Loan
+        <button type="button" class="fintech-tab-btn" data-cat="business" onclick="selectDocCategory('business')">
+          <span class="tab-icon">🏢</span> Business Loan
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="home" onclick="filterDocCards('home')">
-          🏠 Home Loan
+        <button type="button" class="fintech-tab-btn" data-cat="home" onclick="selectDocCategory('home')">
+          <span class="tab-icon">🏠</span> Home Loan
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="mortgage" onclick="filterDocCards('mortgage')">
-          🏘️ Mortgage / LAP
+        <button type="button" class="fintech-tab-btn" data-cat="mortgage" onclick="selectDocCategory('mortgage')">
+          <span class="tab-icon">🏘️</span> Mortgage / LAP
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="salaried" onclick="filterDocCards('salaried')">
-          👔 Salaried
+        <button type="button" class="fintech-tab-btn" data-cat="salaried" onclick="selectDocCategory('salaried')">
+          <span class="tab-icon">👔</span> Salaried Applicant
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="personal" onclick="filterDocCards('personal')">
-          💼 Personal Loan
+        <button type="button" class="fintech-tab-btn" data-cat="personal" onclick="selectDocCategory('personal')">
+          <span class="tab-icon">💼</span> Personal Loan
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="gold" onclick="filterDocCards('gold')">
-          🪙 Gold Loan
+        <button type="button" class="fintech-tab-btn" data-cat="gold" onclick="selectDocCategory('gold')">
+          <span class="tab-icon">🪙</span> Gold Loan
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="vehicle" onclick="filterDocCards('vehicle')">
-          🚗 Vehicle Loan
+        <button type="button" class="fintech-tab-btn" data-cat="machinery" onclick="selectDocCategory('machinery')">
+          <span class="tab-icon">⚙️</span> Machinery Loan
         </button>
-        <button type="button" class="doc-filter-btn" data-filter="machinery" onclick="filterDocCards('machinery')">
-          ⚙️ Machinery Loan
-        </button>
-        <button type="button" class="doc-filter-btn" data-filter="doctor" onclick="filterDocCards('doctor')">
-          🩺 Doctor Loan
+        <button type="button" class="fintech-tab-btn" data-cat="doctor" onclick="selectDocCategory('doctor')">
+          <span class="tab-icon">🩺</span> Doctor &amp; Healthcare
         </button>
       </div>
 
-      <!-- 9 Written-Out Document Cards Grid -->
-      <div class="doc-cards-grid" id="docCardsGrid">
+      <!-- Pre-rendered Fintech Document Hub (Default: Car & Commercial Vehicle Loan) -->
+      <div id="fintechDocShowcase">
+        <!-- Header Hierarchy -->
+        <div class="fintech-doc-header">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div class="fintech-pill-badge">Auto &amp; Transport</div>
+              <h3 class="fintech-heading">Car &amp; Commercial Vehicle Loan</h3>
+              <p class="fintech-subtitle">Financing solutions for passenger cars, transport fleets, and used vehicles.</p>
+            </div>
+            <div class="fintech-header-actions">
+              <button type="button" class="fintech-btn-soft" onclick="window.print()">
+                🖨️ Print
+              </button>
+              <button type="button" class="fintech-btn-soft" onclick="copyDocListToClipboard('vehicle')">
+                📋 Copy List
+              </button>
+              <button type="button" class="fintech-btn-soft" onclick="shareDocsOnWhatsApp('vehicle')">
+                💬 WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <!-- 1. Business Loan -->
-        <div class="doc-card" data-category="business" id="doc-card-business">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🏢</span>
+        <!-- Responsive 3-Column Card Grid -->
+        <div class="fintech-grid-3">
+          <!-- Card 1: Applicant KYC -->
+          <div class="fintech-card">
+            <div class="fintech-card-head">
+              <div class="fintech-card-icon-wrap">🪪</div>
               <div>
-                <h3 class="doc-card-title">Business Loan &amp; Working Capital</h3>
-                <p class="doc-card-sub">Unsecured business loans, MSME credit, and CC/OD limits.</p>
+                <h4 class="fintech-card-title">Applicant KYC</h4>
+                <span class="fintech-card-subtitle">4 Required Documents</span>
               </div>
             </div>
-            <span class="doc-card-badge">MSME / Working Capital</span>
+            <ul class="fintech-checklist">
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">PAN Card &amp; Aadhaar Card</span>
+                  <span class="fintech-item-desc">Government photo identity and address verification for primary borrower &amp; co-borrower</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Valid Driving License</span>
+                  <span class="fintech-item-desc">Valid permanent driving license of applicant or nominated primary driver</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Passport Photographs</span>
+                  <span class="fintech-item-desc">2 recent passport-sized color photos of all signatories</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Residence Proof</span>
+                  <span class="fintech-item-desc">Latest electricity bill or registered rent agreement in applicant name</span>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 KYC &amp; Promoter Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN Card</span>
-                    <span class="doc-list-desc">Mandatory for firm, proprietor, and all active partners / directors</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Aadhaar Card</span>
-                    <span class="doc-list-desc">UIDAI Aadhaar of all promoters with active mobile link for e-sign</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photos &amp; Residence Proof</span>
-                    <span class="doc-list-desc">Recent color photographs &amp; electricity bill / rent agreement</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📑 Business Registration &amp; Legal</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">GST Certificate &amp; Returns</span>
-                    <span class="doc-list-desc">GSTIN registration certificate and active 12-month GSTR-3B filings</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Udyam Aadhaar &amp; Shop Act</span>
-                    <span class="doc-list-desc">MSME certificate &amp; Gumastadhara / municipal trade clearance</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Entity Constitution</span>
-                    <span class="doc-list-desc">Partnership deed / MOA &amp; AOA with Certificate of Incorporation</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📊 Financials &amp; Banking Statements</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Last 3 Years Audited Financials</span>
-                    <span class="doc-list-desc">Balance Sheet, P&amp;L, Audit Reports &amp; CA 3CA/3CB forms</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Last 3 Years Income Tax Returns</span>
-                    <span class="doc-list-desc">Complete ITR acknowledgements with computation of income</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">12 Months Bank Statements</span>
-                    <span class="doc-list-desc">Statements for all Current &amp; Savings operative bank accounts</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Keep your 12 months GST-3B returns reconciled with bank turnover for fastest approval.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Business Loan')">
-              Enquire for Business Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('business')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
 
-        <!-- 2. Home Loan -->
-        <div class="doc-card" data-category="home" id="doc-card-home">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🏠</span>
+          <!-- Card 2: Income & Banking -->
+          <div class="fintech-card">
+            <div class="fintech-card-head">
+              <div class="fintech-card-icon-wrap">💵</div>
               <div>
-                <h3 class="doc-card-title">Home Loan &amp; Construction</h3>
-                <p class="doc-card-sub">New flat purchase, bungalow construction, and plot loans.</p>
+                <h4 class="fintech-card-title">Income &amp; Banking</h4>
+                <span class="fintech-card-subtitle">4 Required Documents</span>
               </div>
             </div>
-            <span class="doc-card-badge">Residential Finance</span>
+            <ul class="fintech-checklist">
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Salaried: Payslips &amp; Form 16</span>
+                  <span class="fintech-item-desc">Last 3 to 6 months payslips, Form 16 (last 2 years), &amp; employer ID card</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Self-Employed: 2 Years ITR</span>
+                  <span class="fintech-item-desc">Last 2 years Income Tax Returns with computation, Balance Sheet &amp; P&amp;L</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">6 Months Bank Statement</span>
+                  <span class="fintech-item-desc">Primary operative bank account showing salary credits or regular turnover</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Commercial Fleet RC Copies</span>
+                  <span class="fintech-item-desc">Existing vehicle RC books &amp; trip contracts (for commercial fleet operators)</span>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Applicant KYC &amp; Identity</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN Card &amp; Aadhaar Card</span>
-                    <span class="doc-list-desc">Mandatory for primary applicant and all co-applicants / co-owners</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photographs</span>
-                    <span class="doc-list-desc">Recent colored passport photos of all applicants</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">💵 Income &amp; Banking Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Salaried Income Proof</span>
-                    <span class="doc-list-desc">Last 6 months salary slips, Form 16 (last 2 years), and 12-month salary bank statement</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Self-Employed Financials</span>
-                    <span class="doc-list-desc">Last 3 years ITR with computation, Balance Sheet, P&amp;L, and 12 months current bank statements</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">🏗️ Property &amp; Title Documents</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Agreement to Sell / Allotment Letter</span>
-                    <span class="doc-list-desc">Registered agreement to sell or builder allotment letter</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Approved Building Plan (RMC / RUDA)</span>
-                    <span class="doc-list-desc">Sanctioned municipal blueprint and approved layout</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Title Search &amp; N.A. Order</span>
-                    <span class="doc-list-desc">30-year title clearance report and Non-Agricultural order</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Property title clearance in Rajkot requires checking the 30-year index register and RMC/RUDA development zoning. We handle this verification.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Home Loan')">
-              Enquire for Home Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('home')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
 
-        <!-- 3. Mortgage / LAP -->
-        <div class="doc-card" data-category="mortgage" id="doc-card-mortgage">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🏘️</span>
+          <!-- Card 3: Vehicle Quotation / Documentation -->
+          <div class="fintech-card">
+            <div class="fintech-card-head">
+              <div class="fintech-card-icon-wrap">🚙</div>
               <div>
-                <h3 class="doc-card-title">Mortgage / Loan Against Property (LAP)</h3>
-                <p class="doc-card-sub">High-value capital against residential, commercial, or industrial real estate.</p>
+                <h4 class="fintech-card-title">Vehicle Quotation / Documentation</h4>
+                <span class="fintech-card-subtitle">3 Required Documents</span>
               </div>
             </div>
-            <span class="doc-card-badge">Property Collateral</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Applicant &amp; Co-Owner KYC</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN &amp; Aadhaar Cards</span>
-                    <span class="doc-list-desc">Mandatory for applicant, co-applicant, and all property co-owners</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photos &amp; Address Proof</span>
-                    <span class="doc-list-desc">Recent color photos &amp; latest municipal property tax bill</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📂 Property Title Chain Documents</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Original Sale Deed / Conveyance</span>
-                    <span class="doc-list-desc">Registered chain of title deeds tracing ownership sequence</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Sanctioned Municipal Layout Plan</span>
-                    <span class="doc-list-desc">Approved building plan and BU (Building Use) permission</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Latest Tax &amp; Utility Receipts</span>
-                    <span class="doc-list-desc">Recent property tax receipt and electricity bill in owner name</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📊 Financials &amp; Banking Records</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Last 3 Years ITR &amp; Computations</span>
-                    <span class="doc-list-desc">Detailed tax returns, Balance Sheet &amp; P&amp;L (for self-employed)</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">12 Months Bank Statements</span>
-                    <span class="doc-list-desc">Comprehensive bank statements of all active operative accounts</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Property co-owners must be included as co-applicants. Both self-occupied and leased commercial properties are eligible.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Mortgage Loan')">
-              Enquire for Mortgage / LAP ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('mortgage')">
-              💬 WhatsApp List
-            </button>
+            <ul class="fintech-checklist">
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">New Vehicle: Proforma Invoice</span>
+                  <span class="fintech-item-desc">Official dealer on-road price quotation with chassis booking details</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Used Vehicle: RC Book Copy</span>
+                  <span class="fintech-item-desc">Clear vehicle Registration Certificate, valid Insurance policy &amp; Fitness certificate</span>
+                </div>
+              </li>
+              <li class="fintech-item">
+                <span class="fintech-check-badge">✓</span>
+                <div class="fintech-item-body">
+                  <span class="fintech-item-title">Advance Margin Token Receipt</span>
+                  <span class="fintech-item-desc">Payment receipt / voucher for token down-payment made to the auto dealer</span>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- 4. Salaried Applicant -->
-        <div class="doc-card" data-category="salaried" id="doc-card-salaried">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">👔</span>
-              <div>
-                <h3 class="doc-card-title">Salaried Applicant Documents</h3>
-                <p class="doc-card-sub">Fast-track documentation for corporate, MNC, PSU, and govt staff.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Corporate / Govt</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Identity &amp; Address Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN Card &amp; Aadhaar Card</span>
-                    <span class="doc-list-desc">Mandatory for credit score checking and e-sign verification</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Current Residence Proof</span>
-                    <span class="doc-list-desc">Electricity bill, piped gas bill, or registered rent agreement</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photographs</span>
-                    <span class="doc-list-desc">Recent color passport-sized photos</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">💼 Employment Credentials</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Company ID Card</span>
-                    <span class="doc-list-desc">Copy of valid corporate employee identity badge</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Appointment / Confirmation Letter</span>
-                    <span class="doc-list-desc">Proof of total employment continuity and probation clearance</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">💵 Salary &amp; Banking Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Salary Slips</span>
-                    <span class="doc-list-desc">Latest 3 to 6 months salary slips stamped by HR or digitally signed</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Form 16 / Tax Returns</span>
-                    <span class="doc-list-desc">Form 16 (Part A &amp; B) for last 2 financial years or ITR acknowledgement</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Salary Bank Account Statement</span>
-                    <span class="doc-list-desc">Last 6 to 12 months updated bank statement where salary is credited</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Maintaining a credit score above 720 and a clean bank statement without ECS/NACH bounces guarantees the lowest bank interest rates.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Personal Loan')">
-              Enquire for Salaried Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('salaried')">
-              💬 WhatsApp List
-            </button>
+        <!-- Pro Tip Advisory Strip -->
+        <div class="fintech-tip-strip">
+          <span style="font-size:20px; line-height:1;">💡</span>
+          <div class="fintech-tip-text">
+            <b>DK Underwriter Advisory:</b> Up to 90% to 100% on-road funding available for selected four-wheelers with flexible 1 to 7 year tenures.
           </div>
         </div>
 
-        <!-- 5. Personal Loan -->
-        <div class="doc-card" data-category="personal" id="doc-card-personal">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">💼</span>
-              <div>
-                <h3 class="doc-card-title">Personal Loan (Unsecured)</h3>
-                <p class="doc-card-sub">Quick multi-purpose cash advance with zero collateral requirement.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Instant Credit</span>
+        <!-- Doorstep Assistance Banner -->
+        <div class="fintech-doorstep-banner">
+          <div>
+            <h4>🚚 Doorstep Document Collection &amp; File Audit Across Rajkot</h4>
+            <p>Avoid repeated branch visits and document rejection. Dhaval Khimani will personally review your file at your office or residence across Rajkot (Kalawad Road, Ring Road, Gondal Road, Metoda, Aji GIDC, Shapar, etc.).</p>
           </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Identity &amp; KYC Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN Card</span>
-                    <span class="doc-list-desc">Mandatory identity document for instant CIBIL credit check</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Aadhaar Card / Voter ID / Passport</span>
-                    <span class="doc-list-desc">Identity and current residential address proof</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photographs</span>
-                    <span class="doc-list-desc">2 recent passport-sized color photos</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📈 Income &amp; Employment Proofs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Payslips / Income Proof</span>
-                    <span class="doc-list-desc">Last 3 months salary slips (for salaried) OR 2 years ITR (for self-employed)</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Company ID or Business Proof</span>
-                    <span class="doc-list-desc">Valid employer identity card or business registration certificate</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">🏦 Banking &amp; Repayment Track</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">6 Months Bank Statement</span>
-                    <span class="doc-list-desc">Primary bank account statement showing salary or regular income credits</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Active Loan Details</span>
-                    <span class="doc-list-desc">Repayment schedule for any existing car loan, personal loan, or credit card</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> No collateral or guarantor required. Disbursed directly to your bank account within 24 to 48 hours.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Personal Loan')">
-              Enquire for Personal Loan ↗
+          <div class="fintech-doorstep-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Car &amp; Commercial Vehicle Loan')">
+              Apply for Car &amp; Commercial Vehicle Loan ↗
             </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('personal')">
-              💬 WhatsApp List
-            </button>
+            <a class="btn btn-outline btn-sm" style="border-color:#475569; color:#fff;" href="tel:9033012582">
+              📞 Call: 90330 12582
+            </a>
+            <a class="btn btn-whatsapp btn-sm" href="https://wa.me/919033012582?text=Hello%20Dhaval%20Bhai,%20I%20need%20doorstep%20document%20collection%20and%20loan%20guidance." target="_blank" rel="noopener">
+              💬 WhatsApp
+            </a>
           </div>
-        </div>
-
-        <!-- 6. Gold Loan -->
-        <div class="doc-card" data-category="gold" id="doc-card-gold">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🪙</span>
-              <div>
-                <h3 class="doc-card-title">Gold Loan (Instant Liquidity)</h3>
-                <p class="doc-card-sub">Same-day cash advance against 18k to 24k gold jewellery and ornaments.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Instant Advance</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Essential KYC Documents</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Identity Proof</span>
-                    <span class="doc-list-desc">PAN Card (mandatory for advances above ₹50,000)</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Address Proof</span>
-                    <span class="doc-list-desc">Aadhaar Card, Voter ID, Driving License, or Passport</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photos</span>
-                    <span class="doc-list-desc">2 recent passport-sized color photographs</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">🥇 Collateral &amp; Verification</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Gold Ornaments / Coins</span>
-                    <span class="doc-list-desc">Gold jewellery, ornaments, or certified coins for on-the-spot caratmeter appraisal</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Purchase Invoices (Optional)</span>
-                    <span class="doc-list-desc">Original gold jeweler invoice if available (helpful for high-value advances)</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">✅ No Income Proof Required</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Zero Financial Documents</span>
-                    <span class="doc-list-desc">No salary slips, no ITR, and no strict CIBIL score required</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Flexible Repayment</span>
-                    <span class="doc-list-desc">Bullet repayment, monthly interest EMI, or flexible overdraft options</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Instant sanction with same-day cash or bank disbursement at minimal processing fees. Safe vault storage guaranteed.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Gold Loan')">
-              Enquire for Gold Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('gold')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
-
-        <!-- 7. Car & Commercial Vehicle -->
-        <div class="doc-card" data-category="vehicle" id="doc-card-vehicle">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🚗</span>
-              <div>
-                <h3 class="doc-card-title">Car &amp; Commercial Vehicle Loan</h3>
-                <p class="doc-card-sub">Financing solutions for passenger cars, transport fleets, and used vehicles.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Auto &amp; Transport</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Applicant KYC</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN Card &amp; Aadhaar Card</span>
-                    <span class="doc-list-desc">Mandatory identification documents for all applicants</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Driving License</span>
-                    <span class="doc-list-desc">Valid driving license of applicant or co-applicant</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Passport Photos</span>
-                    <span class="doc-list-desc">2 recent passport-sized photographs</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">💵 Income &amp; Banking</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Salaried Income Proof</span>
-                    <span class="doc-list-desc">Last 3-6 months salary slips and 6 months salary bank statement</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Self-Employed / Fleets</span>
-                    <span class="doc-list-desc">Last 2 years ITR with computation, 6 months bank statement &amp; fleet RC copies</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">🚙 Vehicle Quotation / Documentation</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">New Vehicle: Proforma Invoice</span>
-                    <span class="doc-list-desc">Official dealer proforma invoice with chassis booking details</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Used Vehicle: RC Book Copy</span>
-                    <span class="doc-list-desc">Valid Registration Certificate, Insurance policy, and Fitness certificate</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Up to 90% to 100% on-road funding is available for selected cars and commercial vehicles with flexible 1 to 7 year tenures.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Car Loan')">
-              Enquire for Vehicle Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('vehicle')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
-
-        <!-- 8. Machinery Loan -->
-        <div class="doc-card" data-category="machinery" id="doc-card-machinery">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">⚙️</span>
-              <div>
-                <h3 class="doc-card-title">Machinery &amp; Equipment Financing</h3>
-                <p class="doc-card-sub">Capex loans for CNC machines, packaging lines, engineering plants, and tools.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Industrial Capex</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 Entity &amp; Promoter KYC</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Promoter KYC</span>
-                    <span class="doc-list-desc">PAN and Aadhaar cards of all directors, partners, and key managers</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Business Registration</span>
-                    <span class="doc-list-desc">GST Certificate, Udyam MSME Registration, and Factory / Shop license</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Electricity Bill</span>
-                    <span class="doc-list-desc">Latest manufacturing facility / industrial unit electricity bill</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📜 Machinery Quotation &amp; Specs</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Proforma Invoice / Quotation</span>
-                    <span class="doc-list-desc">Official commercial quotation from certified machinery manufacturer/dealer</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Technical Specs &amp; Output Note</span>
-                    <span class="doc-list-desc">Machine specifications, warranty details, and installation layout</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📊 Financials &amp; Cash Flow</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Audited Financials</span>
-                    <span class="doc-list-desc">Last 3 years Balance Sheets, P&amp;L, Audit Reports, and CA 3CA/3CB</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">12 Months Current Account Statement</span>
-                    <span class="doc-list-desc">Statements of all operative business bank accounts</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Eligible for Gujarat Industrial Subsidies and Central CLCSS schemes to reduce your net effective interest rate.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Machinery Loan')">
-              Enquire for Machinery Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('machinery')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
-
-        <!-- 9. Doctor Loan -->
-        <div class="doc-card" data-category="doctor" id="doc-card-doctor">
-          <div class="doc-card-header">
-            <div class="doc-card-title-group">
-              <span class="doc-card-icon">🩺</span>
-              <div>
-                <h3 class="doc-card-title">Doctor &amp; Healthcare Professional Loan</h3>
-                <p class="doc-card-sub">Customized credit lines for doctors, dentists, clinics, and hospitals.</p>
-              </div>
-            </div>
-            <span class="doc-card-badge">Healthcare Professional</span>
-          </div>
-          <div class="doc-groups-container">
-            <div class="doc-group-box">
-              <div class="doc-group-title">🪪 KYC &amp; Professional Degree</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">PAN &amp; Aadhaar Cards</span>
-                    <span class="doc-list-desc">Mandatory identity verification for primary applicant</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Medical Degree Certificate</span>
-                    <span class="doc-list-desc">MBBS / MD / MS / BDS / MDS / BHMS / BAMS qualifying degree</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Medical Council Registration</span>
-                    <span class="doc-list-desc">Valid registration with State Medical Council / National Medical Commission</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">🏥 Clinic &amp; Practice Records</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Clinic Ownership / Lease Agreement</span>
-                    <span class="doc-list-desc">Property title deed or registered rent lease agreement for clinic premises</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Establishment Clearance</span>
-                    <span class="doc-list-desc">Local municipal clinical establishment certificate / trade permit</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-group-box">
-              <div class="doc-group-title">📊 Financials &amp; Banking</div>
-              <ul class="doc-list">
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Income Tax Returns (ITR)</span>
-                    <span class="doc-list-desc">Last 2 to 3 years ITR with computation of income</span>
-                  </div>
-                </li>
-                <li class="doc-list-item">
-                  <span class="doc-list-bullet">📄</span>
-                  <div class="doc-list-body">
-                    <span class="doc-list-name">Bank Account Statements</span>
-                    <span class="doc-list-desc">Last 12 months primary operative bank account statements</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="doc-card-tip">
-            <b>💡 DK Advisory Tip:</b> Special concessional interest rates and pre-approved limits up to ₹50 Lakhs without any property collateral required.
-          </div>
-          <div class="doc-card-footer">
-            <button type="button" class="btn btn-primary btn-sm" onclick="selectLoanDocEnquiry('Doctor Loan')">
-              Enquire for Doctor Loan ↗
-            </button>
-            <button type="button" class="btn btn-soft btn-sm" onclick="shareDocsOnWhatsApp('doctor')">
-              💬 WhatsApp List
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Doorstep Assistance & File Audit Banner -->
-      <div class="doc-doorstep-fullbanner">
-        <div>
-          <h4>🚚 Doorstep Document Collection &amp; File Audit Across Rajkot</h4>
-          <p>
-            Avoid repeated branch visits and document rejection. Dhaval Khimani will personally review your file at your office or residence across Rajkot (Kalawad Road, Ring Road, Gondal Road, Metoda, Aji GIDC, Shapar, and all surrounding areas).
-          </p>
-        </div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="btn btn-primary" href="tel:9033012582">
-            📞 Call Dhaval Khimani: 90330 12582
-          </a>
-          <a class="btn btn-whatsapp" href="https://wa.me/919033012582?text=Hello%20Dhaval%20Bhai,%20I%20need%20doorstep%20document%20collection%20and%20loan%20guidance." target="_blank" rel="noopener">
-            💬 WhatsApp for Doorstep Pickup
-          </a>
         </div>
       </div>
 
