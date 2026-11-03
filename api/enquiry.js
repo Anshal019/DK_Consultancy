@@ -62,3 +62,4 @@ module.exports = (req, res) => {
     message: 'Enquiry received successfully'
   });
 };
+
