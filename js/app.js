@@ -890,7 +890,7 @@ function shareDocListWhatsApp(key) {
   text += `📞 Phone: +91 90330 12582 / 70484 56000\n`;
   text += `📍 606, Dwarika Pride, 150ft Ring Rd, Rajkot`;
 
-  const url = `https://wa.me/919033012582?text=${encodeURIComponent(text)}`;
+  const url = `https://wa.me/917048456000?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }
 
@@ -1067,7 +1067,7 @@ function sendWhatsApp() {
 
   const text = `Hello Dhaval Sir (DK Consultancy),\n\nMy Name: ${d.name}\nRequirement: ${d.loan}\nEstimated Amount: ${d.amount}\nPreferred Contact: ${d.method}\nDetails: ${d.message || 'Looking for finance guidance'}\n\nPlease let me know the next step. Thank you!`;
 
-  const url = `https://wa.me/919033012582?text=${encodeURIComponent(text)}`;
+  const url = `https://wa.me/917048456000?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 
