@@ -35,7 +35,7 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261103">
+  <link rel="stylesheet" href="css/style.css?v=20261104">
 
   <!-- Tailwind CSS (Scoped without preflight to preserve existing custom styles) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -119,7 +119,7 @@
       <div class="nav-links">
         <a href="#loans">Loan Services</a>
         <a href="#tools">EMI Calculator</a>
-        <a href="#documents">Document Guide</a>
+        <a href="javascript:void(0)" onclick="openLoanDocModal('business')">Document Checklist</a>
         <a href="#about">Why Choose Us</a>
         <a class="btn btn-primary" href="#contact">Get Guidance ↗</a>
       </div>
@@ -135,7 +135,7 @@
   <div class="mobile-drawer" id="mobileDrawer">
     <a href="#loans" onclick="closeMobileMenu()">🏢 Loan Services</a>
     <a href="#tools" onclick="closeMobileMenu()">🧮 EMI Calculator & Finder</a>
-    <a href="#documents" onclick="closeMobileMenu()">📋 Document Guide</a>
+    <a href="javascript:void(0)" onclick="closeMobileMenu(); openLoanDocModal('business');">📋 Document Checklist</a>
     <a href="#about" onclick="closeMobileMenu()">⭐ Why Choose Us</a>
     <a href="#contact" onclick="closeMobileMenu()">📞 Contact Office</a>
     <div style="display:flex; gap:10px; margin-top:8px;">
@@ -197,10 +197,10 @@
             <strong>EMI</strong>
             <small>Live Repayment Estimator</small>
           </div>
-          <div class="mini-stat">
+          <div class="mini-stat" style="cursor:pointer;" onclick="openLoanDocModal('business')" title="Click to view category checklist">
             <small>Document Guide</small>
             <strong>Ready</strong>
-            <small>Category-wise Checklist</small>
+            <small>Category Checklist ↗</small>
           </div>
           <div class="mini-stat">
             <small>Personal Advisor</small>
@@ -258,84 +258,111 @@
         </p>
       </div>
       <div class="grid" id="loanCards">
-        <article class="card" onclick="selectLoanService('Business Loan')">
+        <article class="card" onclick="openLoanDocModal('business')">
           <div class="card-icon">🏢</div>
           <h3>Business Loan</h3>
           <p>Unsecured working capital, business expansion, raw material procurement, or cash-flow boost with fast approvals and flexible tenures.</p>
           <div class="card-tags">
             <span class="tag">Working Capital</span><span class="tag">Turnover Based</span><span class="tag">Fast Disbursal</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('CGTMSE MSME Loan')">
+        <article class="card" onclick="openLoanDocModal('cgtmse')">
           <div class="card-icon">🏛️</div>
           <h3>CGTMSE MSME Loan</h3>
           <p>Collateral-free and third-party-guarantee-free credit facility up to ₹5 Crore for eligible micro and small enterprises under government scheme.</p>
           <div class="card-tags">
             <span class="tag">Zero Collateral</span><span class="tag">Govt Scheme</span><span class="tag">Up to ₹5 Cr</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Home Loan')">
+        <article class="card" onclick="openLoanDocModal('home')">
           <div class="card-icon">🏠</div>
           <h3>Home Loan</h3>
           <p>Tailored finance for purchasing ready/under-construction homes, plot purchase with construction, or balance transfer with top-up facility.</p>
           <div class="card-tags">
             <span class="tag">Lowest Interest</span><span class="tag">Up to 30 Yrs</span><span class="tag">Tax Benefits</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Mortgage / Loan Against Property')">
+        <article class="card" onclick="openLoanDocModal('mortgage')">
           <div class="card-icon">🏘️</div>
           <h3>Mortgage / Loan Against Property</h3>
           <p>Leverage the market value of your residential, commercial, or industrial property for major business needs with comfortable repayment tenures.</p>
           <div class="card-tags">
             <span class="tag">High Ticket Size</span><span class="tag">Lower EMI</span><span class="tag">Flexible Usage</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Personal Loan')">
+        <article class="card" onclick="openLoanDocModal('personal')">
           <div class="card-icon">💼</div>
           <h3>Personal Loan</h3>
           <p>Quick collateral-free loans for salaried employees and self-employed professionals to meet immediate medical, family, or travel expenses.</p>
           <div class="card-tags">
             <span class="tag">No Security</span><span class="tag">Minimal Paperwork</span><span class="tag">1 to 5 Yrs</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Doctor & Professional Loan')">
+        <article class="card" onclick="openLoanDocModal('doctor')">
           <div class="card-icon">🩺</div>
           <h3>Doctor & Professional Loan</h3>
           <p>Exclusive specialized credit lines for practicing doctors, dentists, chartered accountants, and architects for clinics, labs, and setups.</p>
           <div class="card-tags">
             <span class="tag">Customized Limits</span><span class="tag">Hassle-Free</span><span class="tag">Practice Expansion</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Car & Commercial Vehicle Loan')">
+        <article class="card" onclick="openLoanDocModal('vehicle')">
           <div class="card-icon">🚗</div>
           <h3>Car & Commercial Vehicle Loan</h3>
           <p>Competitive financing options for new or pre-owned private cars, commercial fleets, trucks, and transport vehicles with flexible down payment.</p>
           <div class="card-tags">
             <span class="tag">Up to 100% On-road</span><span class="tag">New & Used</span><span class="tag">Instant Sanction</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Machinery & Equipment Loan')">
+        <article class="card" onclick="openLoanDocModal('machinery')">
           <div class="card-icon">⚙️</div>
           <h3>Machinery & Equipment Loan</h3>
           <p>Upgrade your manufacturing setup, factory machines, CNC, medical equipment, or printing units with term loans against equipment proforma.</p>
           <div class="card-tags">
             <span class="tag">Capital Expenditure</span><span class="tag">Tax Depreciation</span><span class="tag">Supplier Linked</span>
           </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
+          </div>
         </article>
 
-        <article class="card" onclick="selectLoanService('Gold Loan')">
+        <article class="card" onclick="openLoanDocModal('gold')">
           <div class="card-icon">🪙</div>
           <h3>Gold Loan</h3>
           <p>Instant liquidity against gold jewellery with maximum loan-to-value (LTV), transparent valuation, and flexible interest-servicing options.</p>
           <div class="card-tags">
             <span class="tag">Same Day Cash</span><span class="tag">Minimal KYC</span><span class="tag">Safe Storage</span>
+          </div>
+          <div class="card-action">
+            <span class="textlink">📄 View Documents & Details →</span>
           </div>
         </article>
       </div>
@@ -495,244 +522,6 @@
           </button>
 
           <div id="finderResult" class="resultbox hidden" aria-live="polite"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modern Fintech Document Checklist Section (FINTECH 3-BOX UI) -->
-  <section class="section fintech-doc-section" id="documents">
-    <div class="fintech-doc-container">
-      <div class="section-head" style="margin-bottom: 24px;">
-        <div class="kicker">Underwriting Documentation Hub</div>
-        <h2>Document Checklist by Category</h2>
-        <p>
-          Pre-screened file compilation ensures zero bank rejections. Select your loan category below to view the official verified document portfolio.
-        </p>
-      </div>
-
-      <!-- Category Selection Boxes / Pills -->
-      <div class="fintech-cat-nav" role="tablist" aria-label="Loan Categories">
-        <button class="fintech-tab-btn active" data-cat="salaried" onclick="selectDocCategory('salaried')">
-          <span class="tab-icon">👔</span> Salaried Applicant
-        </button>
-        <button class="fintech-tab-btn" data-cat="business" onclick="selectDocCategory('business')">
-          <span class="tab-icon">🏢</span> Business Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="home" onclick="selectDocCategory('home')">
-          <span class="tab-icon">🏠</span> Home Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="mortgage" onclick="selectDocCategory('mortgage')">
-          <span class="tab-icon">🏘️</span> Mortgage Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="personal" onclick="selectDocCategory('personal')">
-          <span class="tab-icon">💼</span> Personal Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="vehicle" onclick="selectDocCategory('vehicle')">
-          <span class="tab-icon">🚗</span> Car &amp; Commercial Vehicle
-        </button>
-        <button class="fintech-tab-btn" data-cat="gold" onclick="selectDocCategory('gold')">
-          <span class="tab-icon">🪙</span> Gold Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="machinery" onclick="selectDocCategory('machinery')">
-          <span class="tab-icon">⚙️</span> Machinery Loan
-        </button>
-        <button class="fintech-tab-btn" data-cat="doctor" onclick="selectDocCategory('doctor')">
-          <span class="tab-icon">🩺</span> Doctor Loan
-        </button>
-      </div>
-
-      <!-- Main Dynamic Showcase Area (Pre-rendered default: Salaried Applicant) -->
-      <div id="fintechDocShowcase">
-        <div class="fintech-doc-header">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
-            <div>
-              <div class="fintech-pill-badge">Corporate &amp; Govt Staff</div>
-              <h3 class="fintech-heading">Salaried Applicant Document List</h3>
-              <p class="fintech-subtitle">Standard documentation portfolio for corporate, MNC, PSU, and government employees.</p>
-            </div>
-            <div class="fintech-header-actions">
-              <button class="fintech-btn-soft" onclick="copyDocumentList('salaried')" title="Copy to clipboard">
-                📋 Copy List
-              </button>
-              <button class="fintech-btn-soft" onclick="shareDocListWhatsApp('salaried')" title="Send to WhatsApp">
-                💬 WhatsApp List
-              </button>
-              <button class="fintech-btn-soft" onclick="window.print()" title="Print checklist">
-                🖨️ Print
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="fintech-grid-3">
-          <!-- Card 1: KYC & Residence Proofs -->
-          <div class="fintech-card">
-            <div class="fintech-card-head">
-              <span class="fintech-card-icon">🪪</span>
-              <h4 class="fintech-card-title">Applicant KYC &amp; Residence</h4>
-            </div>
-            <ul class="fintech-checklist">
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">1 Passport Size Photo</div>
-                  <div class="fintech-item-desc">Recent passport size color photograph of the applicant</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">PAN Card Copy</div>
-                  <div class="fintech-item-desc">Mandatory for applicant identity verification and CIBIL score check</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Aadhaar Card Copy</div>
-                  <div class="fintech-item-desc">Mandatory UIDAI address and digital KYC verification</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Resident Light Bill Xerox Copy</div>
-                  <div class="fintech-item-desc">Latest home electricity bill Xerox copy as residential address proof</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Company ID Card Photo Copy</div>
-                  <div class="fintech-item-desc">Valid corporate employee identity card Xerox copy</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Card 2: Salary & Banking Proofs -->
-          <div class="fintech-card">
-            <div class="fintech-card-head">
-              <span class="fintech-card-icon">💵</span>
-              <h4 class="fintech-card-title">Salary &amp; Banking Proofs</h4>
-            </div>
-            <ul class="fintech-checklist">
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">6 Months Salary Slips</div>
-                  <div class="fintech-item-desc">Latest 6 months payslips showing gross salary, deductions &amp; net pay</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">1 Year Bank Statement</div>
-                  <div class="fintech-item-desc">Complete 12 months updated bank statement where salary is credited</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Salary Bank Account Proof</div>
-                  <div class="fintech-item-desc">Passbook front page or cancelled cheque of operative salary account</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Joining / Appointment Letter</div>
-                  <div class="fintech-item-desc">Official company joining letter proving job stability &amp; total tenure</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Card 3: Submission & Underwriter Rules -->
-          <div class="fintech-card">
-            <div class="fintech-card-head">
-              <span class="fintech-card-icon">📋</span>
-              <h4 class="fintech-card-title">Submission &amp; Underwriter Rules</h4>
-            </div>
-            <ul class="fintech-checklist">
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Signature on All Pages (Mandatory)</div>
-                  <div class="fintech-item-desc">All document Xerox copies must have applicant signature on every single page</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Form 16 / Tax Assessment</div>
-                  <div class="fintech-item-desc">Last 2 years Form 16 (Part A &amp; B) or recent income tax assessment returns</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Clean Banking Track</div>
-                  <div class="fintech-item-desc">Zero ECS/NACH cheque returns or bounce charges in operative accounts</div>
-                </div>
-              </li>
-              <li class="fintech-item">
-                <svg class="fintech-check-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <div class="fintech-item-body">
-                  <div class="fintech-item-title">Originals for Verification</div>
-                  <div class="fintech-item-desc">Keep original PAN, Aadhaar &amp; payslips ready for one-time physical bank verification</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- DK Underwriter Advisory Strip -->
-        <div class="fintech-tip-strip">
-          <span style="font-size:20px; line-height:1; flex-shrink:0;">💡</span>
-          <div class="fintech-tip-text">
-            <b>DK Underwriter Rule:</b> All document Xerox copies must be signed (self-attested) on every single page. Keep original documents ready for one-time physical bank verification.
-          </div>
-        </div>
-
-        <!-- Doorstep Assistance Banner -->
-        <div class="fintech-doorstep-banner">
-          <div>
-            <h4>Need Doorstep File Pickup in Rajkot?</h4>
-            <p>Our loan executive collects and verifies all Xerox copies directly at your home or office across Rajkot &amp; Saurashtra.</p>
-          </div>
-          <div class="fintech-doorstep-actions">
-            <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:9033012582">📞 90330 12582</a>
-            <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:7048456000">📞 70484 56000</a>
-            <a class="btn btn-primary" href="#contact" onclick="enquireDocCategory()">Apply with this Checklist →</a>
-          </div>
         </div>
       </div>
     </div>
@@ -1066,7 +855,7 @@
           <p>
             <a href="#emi">EMI Calculator</a><br>
             <a href="#finder">Loan Recommendation Finder</a><br>
-            <a href="#documents">Document Checklist</a><br>
+            <a href="javascript:void(0)" onclick="openLoanDocModal('business')">Document Checklist</a><br>
             <a href="#about">Why Choose Us</a><br>
             <a href="#contact">Direct Contact</a>
           </p>
@@ -1119,11 +908,40 @@
     </a>
   </aside>
 
+  <!-- Loan Details & Document Checklist Modal Dialog -->
+  <div id="loanDocModal" class="loan-modal-backdrop hidden" onclick="handleModalBackdropClick(event)" role="dialog" aria-modal="true" aria-labelledby="modalLoanTitle">
+    <div class="loan-modal-dialog">
+      <!-- Modal Close Button -->
+      <button class="loan-modal-close" onclick="closeLoanDocModal()" aria-label="Close modal">✕</button>
+
+      <!-- Category Switch Tabs inside Modal -->
+      <div class="loan-modal-tabs-wrapper">
+        <div class="loan-modal-tabs" role="tablist" aria-label="Loan Document Categories">
+          <button class="modal-tab-btn" data-cat="business" onclick="switchModalCategory('business')">🏢 Business</button>
+          <button class="modal-tab-btn" data-cat="cgtmse" onclick="switchModalCategory('cgtmse')">🏛️ CGTMSE MSME</button>
+          <button class="modal-tab-btn" data-cat="home" onclick="switchModalCategory('home')">🏠 Home Loan</button>
+          <button class="modal-tab-btn" data-cat="mortgage" onclick="switchModalCategory('mortgage')">🏘️ Mortgage / LAP</button>
+          <button class="modal-tab-btn" data-cat="personal" onclick="switchModalCategory('personal')">💼 Personal</button>
+          <button class="modal-tab-btn" data-cat="salaried" onclick="switchModalCategory('salaried')">👔 Salaried</button>
+          <button class="modal-tab-btn" data-cat="doctor" onclick="switchModalCategory('doctor')">🩺 Doctor / CA</button>
+          <button class="modal-tab-btn" data-cat="vehicle" onclick="switchModalCategory('vehicle')">🚗 Car / Vehicle</button>
+          <button class="modal-tab-btn" data-cat="machinery" onclick="switchModalCategory('machinery')">⚙️ Machinery</button>
+          <button class="modal-tab-btn" data-cat="gold" onclick="switchModalCategory('gold')">🪙 Gold Loan</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Dynamic) -->
+      <div id="loanModalBody" class="loan-modal-body">
+        <!-- Rendered dynamically by openLoanDocModal() in app.js -->
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
   <!-- Application Script -->
-  <script src="js/app.js?v=20261103"></script>
+  <script src="js/app.js?v=20261104"></script>
 </body>
 
 </html>

@@ -27,54 +27,72 @@ function escapeHTML(str) {
    ========================================================================== */
 const loanServices = [
   {
+    key: 'business',
+    docKey: 'business',
     icon: '🏢',
     title: 'Business Loan',
     desc: 'Unsecured working capital, business expansion, raw material procurement, or cash-flow boost with fast approvals and flexible tenures.',
     tags: ['Working Capital', 'Turnover Based', 'Fast Disbursal']
   },
   {
+    key: 'cgtmse',
+    docKey: 'cgtmse',
     icon: '🏛️',
     title: 'CGTMSE MSME Loan',
     desc: 'Collateral-free and third-party-guarantee-free credit facility up to ₹5 Crore for eligible micro and small enterprises under government scheme.',
     tags: ['Zero Collateral', 'Govt Scheme', 'Up to ₹5 Cr']
   },
   {
+    key: 'home',
+    docKey: 'home',
     icon: '🏠',
     title: 'Home Loan',
     desc: 'Tailored finance for purchasing ready/under-construction homes, plot purchase with construction, or balance transfer with top-up facility.',
     tags: ['Lowest Interest', 'Up to 30 Yrs', 'Tax Benefits']
   },
   {
+    key: 'mortgage',
+    docKey: 'mortgage',
     icon: '🏘️',
     title: 'Mortgage / Loan Against Property',
     desc: 'Leverage the market value of your residential, commercial, or industrial property for major business needs with comfortable repayment tenures.',
     tags: ['High Ticket Size', 'Lower EMI', 'Flexible Usage']
   },
   {
+    key: 'personal',
+    docKey: 'personal',
     icon: '💼',
     title: 'Personal Loan',
     desc: 'Quick collateral-free loans for salaried employees and self-employed professionals to meet immediate medical, family, or travel expenses.',
     tags: ['No Security', 'Minimal Paperwork', '1 to 5 Yrs']
   },
   {
+    key: 'doctor',
+    docKey: 'doctor',
     icon: '🩺',
     title: 'Doctor & Professional Loan',
     desc: 'Exclusive specialized credit lines for practicing doctors, dentists, chartered accountants, and architects for clinics, labs, and setups.',
     tags: ['Customized Limits', 'Hassle-Free', 'Practice Expansion']
   },
   {
+    key: 'vehicle',
+    docKey: 'vehicle',
     icon: '🚗',
     title: 'Car & Commercial Vehicle Loan',
     desc: 'Competitive financing options for new or pre-owned private cars, commercial fleets, trucks, and transport vehicles with flexible down payment.',
     tags: ['Up to 100% On-road', 'New & Used', 'Instant Sanction']
   },
   {
+    key: 'machinery',
+    docKey: 'machinery',
     icon: '⚙️',
     title: 'Machinery & Equipment Loan',
     desc: 'Upgrade your manufacturing setup, factory machines, CNC, medical equipment, or printing units with term loans against equipment proforma.',
     tags: ['Capital Expenditure', 'Tax Depreciation', 'Supplier Linked']
   },
   {
+    key: 'gold',
+    docKey: 'gold',
     icon: '🪙',
     title: 'Gold Loan',
     desc: 'Instant liquidity against gold jewellery with maximum loan-to-value (LTV), transparent valuation, and flexible interest-servicing options.',
@@ -87,12 +105,15 @@ function renderLoanCards() {
   if (!container) return;
 
   container.innerHTML = loanServices.map(loan => `
-    <article class="card" onclick="selectLoanService('${escapeHTML(loan.title)}')">
+    <article class="card" onclick="openLoanDocModal('${loan.key}')">
       <div class="card-icon">${loan.icon}</div>
       <h3>${loan.title}</h3>
       <p>${loan.desc}</p>
       <div class="card-tags">
         ${loan.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div class="card-action">
+        <span class="textlink">📄 View Documents & Details →</span>
       </div>
     </article>
   `).join('');
@@ -100,10 +121,16 @@ function renderLoanCards() {
 
 function selectLoanService(serviceTitle) {
   const loanInput = document.getElementById('loanType');
-  if (loanInput) {
-    loanInput.value = serviceTitle;
+  if (loanInput && serviceTitle) {
+    for (let opt of loanInput.options) {
+      if (opt.text.toLowerCase().includes(serviceTitle.toLowerCase()) || 
+          serviceTitle.toLowerCase().includes(opt.text.toLowerCase())) {
+        loanInput.value = opt.value;
+        break;
+      }
+    }
   }
-  showToast(`Selected "${serviceTitle}" for enquiry`);
+  openLoanDocModal(serviceTitle);
 }
 
 /* ==========================================================================
@@ -397,6 +424,45 @@ const documentData = {
       }
     ]
   },
+  cgtmse: {
+    title: 'CGTMSE MSME Collateral-Free Loan',
+    icon: '🏛️',
+    subtitle: 'Govt Credit Guarantee (Up to ₹5 Cr)',
+    tagline: 'Collateral-free credit facility for eligible micro and small enterprises under Government of India CGTMSE trust.',
+    tip: 'Udyam registration is compulsory. Zero third-party guarantee or property collateral required.',
+    groups: [
+      {
+        name: 'Promoter & Residence KYC',
+        icon: '🪪',
+        items: [
+          { name: '1 Passport Size Photo', desc: 'Recent passport size photos of applicant, partners, or directors' },
+          { name: 'PAN Card Copy', desc: 'Individual PAN cards of active promoters and entity PAN' },
+          { name: 'Aadhaar Card Copy', desc: 'UIDAI digital KYC of all primary partners/directors' },
+          { name: 'Resident Electric Bill or Tax Bill', desc: 'Latest electricity bill or municipal tax bill as residential proof' }
+        ]
+      },
+      {
+        name: 'MSME Business Proofs & Setup',
+        icon: '🏢',
+        items: [
+          { name: 'Udyam MSME Registration Certificate', desc: 'Mandatory central government MSME Udyam certificate' },
+          { name: 'Active GST Registration Certificate', desc: 'GSTIN certificate with last 12 months filed 3B/GSTR-1 returns' },
+          { name: 'Shop / Factory Premises Light Bill', desc: 'Commercial premises electricity bill showing manufacturing/trade setup' },
+          { name: 'Project / Expansion Note', desc: 'Brief overview of proposed business expansion or working capital cycle' }
+        ]
+      },
+      {
+        name: 'Financials & Banking Statements',
+        icon: '📊',
+        items: [
+          { name: 'ITR Last 3 Years', desc: 'Last 3 years filed Income Tax Returns with computation' },
+          { name: 'Audited Financials (3 Years)', desc: 'Balance sheets, Profit & Loss accounts with CA audit reports' },
+          { name: '12 Months Current Account Statement', desc: 'Full 1-year statements of all business operative bank accounts' },
+          { name: 'Sanction Letters of Active Facilities', desc: 'Repayment track or sanction letter for any existing loans' }
+        ]
+      }
+    ]
+  },
   home: {
     title: 'Home Loan & Housing Finance',
     icon: '🏠',
@@ -677,15 +743,77 @@ window.documentData = documentData;
 window.currentDocCategory = 'salaried';
 
 /**
- * Render modern fintech-grade 3-box document checklist hub
+ * Helper to match category key from loan title or category string
  */
-function renderFintechDocHub(key) {
-  if (!documentData[key]) key = 'salaried';
+function getDocKeyForLoan(loanKeyOrTitle) {
+  if (!loanKeyOrTitle) return 'business';
+  const str = String(loanKeyOrTitle).toLowerCase().trim();
+  if (str === 'business' || str.includes('business')) return 'business';
+  if (str === 'cgtmse' || str.includes('cgtmse') || str.includes('msme')) return 'cgtmse';
+  if (str === 'home' || str.includes('home') || str.includes('housing')) return 'home';
+  if (str === 'mortgage' || str.includes('mortgage') || str.includes('property') || str.includes('lap')) return 'mortgage';
+  if (str === 'personal' || str.includes('personal')) return 'personal';
+  if (str === 'doctor' || str.includes('doctor') || str.includes('professional') || str.includes('clinic')) return 'doctor';
+  if (str === 'vehicle' || str.includes('car') || str.includes('vehicle') || str.includes('auto')) return 'vehicle';
+  if (str === 'machinery' || str.includes('machinery') || str.includes('equipment')) return 'machinery';
+  if (str === 'gold' || str.includes('gold')) return 'gold';
+  if (str === 'salaried' || str.includes('salary') || str.includes('salaried')) return 'salaried';
+  if (documentData[loanKeyOrTitle]) return loanKeyOrTitle;
+  return 'business';
+}
+
+/**
+ * Open interactive loan & document details modal
+ */
+function openLoanDocModal(loanKeyOrTitle) {
+  const docKey = getDocKeyForLoan(loanKeyOrTitle);
+  window.currentDocCategory = docKey;
+  renderModalContent(docKey);
+
+  const modal = document.getElementById('loanDocModal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+/**
+ * Close modal dialog
+ */
+function closeLoanDocModal() {
+  const modal = document.getElementById('loanDocModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+}
+
+/**
+ * Backdrop click handler
+ */
+function handleModalBackdropClick(event) {
+  if (event.target && (event.target.id === 'loanDocModal' || event.target.classList.contains('loan-modal-backdrop'))) {
+    closeLoanDocModal();
+  }
+}
+
+/**
+ * Switch category inside modal
+ */
+function switchModalCategory(catKey) {
+  renderModalContent(catKey);
+}
+
+/**
+ * Render modal body content for selected category
+ */
+function renderModalContent(key) {
+  if (!documentData[key]) key = 'business';
   window.currentDocCategory = key;
 
-  // Highlight active button in category nav
-  const buttons = document.querySelectorAll('.fintech-tab-btn, .doc-cat-tile');
-  buttons.forEach(btn => {
+  // Highlight active tab
+  const tabBtns = document.querySelectorAll('.modal-tab-btn');
+  tabBtns.forEach(btn => {
     if (btn.getAttribute('data-cat') === key) {
       btn.classList.add('active');
     } else {
@@ -693,38 +821,47 @@ function renderFintechDocHub(key) {
     }
   });
 
-  const showcaseContainer = document.getElementById('fintechDocShowcase') || document.getElementById('docShowcaseArea');
-  if (!showcaseContainer) return;
+  const modalBody = document.getElementById('loanModalBody');
+  if (!modalBody) return;
 
   const data = documentData[key];
+  const loanInfo = loanServices.find(l => l.key === key || (l.docKey && l.docKey === key)) || {
+    title: data.title,
+    icon: data.icon,
+    desc: data.tagline,
+    tags: [data.subtitle]
+  };
+
   const g1 = data.groups[0] || { name: 'Applicant KYC', icon: '🪪', items: [] };
   const g2 = data.groups[1] || { name: 'Income & Banking', icon: '💵', items: [] };
   const g3 = data.groups[2] || { name: 'Asset & Underwriting', icon: '📋', items: [] };
 
-  showcaseContainer.innerHTML = `
-    <div class="fintech-doc-header">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
-        <div>
-          <div class="fintech-pill-badge">${escapeHTML(data.subtitle)}</div>
-          <h3 class="fintech-heading">${escapeHTML(data.title)}</h3>
-          <p class="fintech-subtitle">${escapeHTML(data.tagline)}</p>
+  modalBody.innerHTML = `
+    <div class="loan-modal-header">
+      <div class="loan-modal-meta">
+        <span class="fintech-pill-badge">${escapeHTML(data.subtitle)}</span>
+        <h2 class="loan-modal-title" id="modalLoanTitle">${loanInfo.icon || data.icon} ${escapeHTML(loanInfo.title || data.title)}</h2>
+        <p class="loan-modal-desc">${escapeHTML(loanInfo.desc || data.tagline)}</p>
+        <div class="card-tags" style="margin-top: 10px; margin-bottom: 0;">
+          ${(loanInfo.tags || []).map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('')}
         </div>
-        <div class="fintech-header-actions">
-          <button class="fintech-btn-soft" onclick="copyDocumentList('${key}')" title="Copy to clipboard">
-            📋 Copy List
-          </button>
-          <button class="fintech-btn-soft" onclick="shareDocListWhatsApp('${key}')" title="Send to WhatsApp">
-            💬 WhatsApp List
-          </button>
-          <button class="fintech-btn-soft" onclick="window.print()" title="Print checklist">
-            🖨️ Print
-          </button>
-        </div>
+      </div>
+      <div class="fintech-header-actions">
+        <button class="fintech-btn-soft" onclick="copyDocumentList('${key}')" title="Copy to clipboard">
+          📋 Copy List
+        </button>
+        <button class="fintech-btn-soft" onclick="shareDocListWhatsApp('${key}')" title="Send to WhatsApp">
+          💬 WhatsApp List
+        </button>
+        <button class="fintech-btn-soft" onclick="window.print()" title="Print checklist">
+          🖨️ Print
+        </button>
       </div>
     </div>
 
+    <!-- 3-Box Modern Fintech Checklist Grid -->
     <div class="fintech-grid-3">
-      <!-- Card 1 -->
+      <!-- Box 1 -->
       <div class="fintech-card">
         <div class="fintech-card-head">
           <span class="fintech-card-icon">${g1.icon || '🪪'}</span>
@@ -745,7 +882,7 @@ function renderFintechDocHub(key) {
         </ul>
       </div>
 
-      <!-- Card 2 -->
+      <!-- Box 2 -->
       <div class="fintech-card">
         <div class="fintech-card-head">
           <span class="fintech-card-icon">${g2.icon || '💵'}</span>
@@ -766,7 +903,7 @@ function renderFintechDocHub(key) {
         </ul>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Box 3 -->
       <div class="fintech-card">
         <div class="fintech-card-head">
           <span class="fintech-card-icon">${g3.icon || '📋'}</span>
@@ -796,20 +933,58 @@ function renderFintechDocHub(key) {
       </div>
     </div>
 
-    <!-- Doorstep Assistance Banner -->
-    <div class="fintech-doorstep-banner">
-      <div>
-        <h4>Need Doorstep File Pickup in Rajkot?</h4>
-        <p>Our loan executive collects and verifies all Xerox copies directly at your home or office across Rajkot &amp; Saurashtra.</p>
+    <!-- Modal Footer Actions -->
+    <div class="loan-modal-footer">
+      <div class="modal-footer-info">
+        <strong>Doorstep File Pickup in Rajkot:</strong> Dhaval Khimani conducts direct file compilation & bank pre-clearance across Rajkot & Saurashtra.
       </div>
-      <div class="fintech-doorstep-actions">
-        <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:9033012582">📞 90330 12582</a>
-        <a class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);" href="tel:7048456000">📞 70484 56000</a>
-        <a class="btn btn-primary" href="#contact" onclick="enquireDocCategory()">Apply with this Checklist →</a>
+      <div class="modal-footer-actions">
+        <a class="btn btn-whatsapp" href="https://wa.me/917048456000?text=${encodeURIComponent('Hello Dhaval bhai, I want to inquire about ' + (loanInfo.title || data.title) + ' and its document requirements.')}" target="_blank" rel="noopener">
+          💬 WhatsApp Checklist
+        </a>
+        <button class="btn btn-primary" onclick="applyFromModal('${escapeHTML(loanInfo.title || data.title)}')">
+          Apply for this Loan →
+        </button>
       </div>
     </div>
   `;
 }
+
+/**
+ * Apply for loan from modal (closes modal and scrolls to contact)
+ */
+function applyFromModal(loanTitle) {
+  closeLoanDocModal();
+  const loanSelect = document.getElementById('loanType');
+  if (loanSelect && loanTitle) {
+    for (let opt of loanSelect.options) {
+      if (opt.text.toLowerCase().includes(loanTitle.toLowerCase()) || 
+          loanTitle.toLowerCase().includes(opt.text.toLowerCase())) {
+        loanSelect.value = opt.value;
+        break;
+      }
+    }
+  }
+  const contact = document.getElementById('contact');
+  if (contact) {
+    contact.scrollIntoView({ behavior: 'smooth' });
+    showToast(`Selected "${loanTitle}" in enquiry form`);
+  }
+}
+
+/**
+ * Render modern fintech-grade 3-box document checklist hub (Compatibility / Standalone fallback)
+ */
+function renderFintechDocHub(key) {
+  renderModalContent(key);
+}
+
+// Global Escape key listener to close modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLoanDocModal();
+  }
+});
 
 /**
  * Direct selection of a document category
@@ -935,6 +1110,12 @@ window.shareDocListWhatsApp = shareDocListWhatsApp;
 window.shareDocsOnWhatsApp = shareDocsOnWhatsApp;
 window.enquireDocCategory = enquireDocCategory;
 window.enquireCurrentDocLoan = enquireCurrentDocLoan;
+window.openLoanDocModal = openLoanDocModal;
+window.closeLoanDocModal = closeLoanDocModal;
+window.handleModalBackdropClick = handleModalBackdropClick;
+window.switchModalCategory = switchModalCategory;
+window.renderModalContent = renderModalContent;
+window.applyFromModal = applyFromModal;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -943,7 +1124,10 @@ if (typeof module !== 'undefined' && module.exports) {
     selectDocCategory,
     copyDocumentList,
     shareDocListWhatsApp,
-    enquireDocCategory
+    enquireDocCategory,
+    openLoanDocModal,
+    closeLoanDocModal,
+    switchModalCategory
   };
 }
 
